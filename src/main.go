@@ -13,6 +13,8 @@ import (
 const (
 	url1 = "/shareStage1"
 	url2 = "/shareStage2"
+	url3 = "/ciphertext"
+	url4 = "/decryptionShare"
 	serverConfig = "etc/serverConfig.json"
 	dkgConfig = "etc/dkgConfig.json"
 	peerConfig = "etc/peerConfig.json"
@@ -76,9 +78,57 @@ func postShareStage2(d *dkg.Dkg) func (http.ResponseWriter, *http.Request) {
 			d.AppendQualifiedPeerPublicVal(publicVals[0])
 			if len(d.QualifiedPeerPublicVals)==d.N {
 				d.SetPublicVal()
+				if(d.NeedEncrpyt) {
+					go d.SendCiphertext()
+				}
 			}
 		} else {
 			http.Error(w,"vals is not qualified for stage2", http.StatusBadRequest)
+		}
+	}
+}
+
+func postCyphertext(d *dkg.Dkg) func (http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var payload dkg.Ciphertext
+		data,err:= ioutil.ReadAll(r.Body)
+		if err!=nil {
+			log.Println(err.Error())
+			http.Error(w,err.Error(),http.StatusBadRequest)
+			return
+		}
+		err =json.Unmarshal(data,&payload)
+		if err!=nil {
+			log.Println(err.Error())
+			http.Error(w,err.Error(),http.StatusBadRequest)
+		}
+
+		if d.IsCiphertextValid(&payload) {
+			d.SendDecrptionShare(&payload)
+		} else {
+			http.Error(w,"invalid ciphertext", http.StatusBadRequest)
+		}
+	}
+}
+
+func postDecryptionShare(d *dkg.Dkg) func (http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var payload dkg.DecreptionShare
+		data,err:= ioutil.ReadAll(r.Body)
+		if err!=nil {
+			log.Println(err.Error())
+			http.Error(w,err.Error(),http.StatusBadRequest)
+			return
+		}
+		err =json.Unmarshal(data,&payload)
+		if err!=nil {
+			log.Println(err.Error())
+			http.Error(w,err.Error(),http.StatusBadRequest)
+		}
+
+		d.AppendDecreptionShare(&payload)
+		if len(d.DecryptionShares) == d.T+1 {
+			go d.
 		}
 	}
 }
@@ -149,6 +199,8 @@ func main() {
 
 	r.HandleFunc(url1,postShareStage1(d)).Methods("POST")
 	r.HandleFunc(url2,postShareStage2(d)).Methods("POST")
+	r.HandleFunc(url3,postCyphertext(d)).Methods("POST")
+	r.HandleFunc(url4,postDecryptionShare(d)).Methods("POST")
 	http.ListenAndServe(loadServerConfig(serverConfig),r)
 }
 
