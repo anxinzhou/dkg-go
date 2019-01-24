@@ -45,6 +45,7 @@ type DecryptionShare struct {
 	U  *big.Int `json:"u"`
 	E  *big.Int `json:"e"`
 	F  *big.Int `json:"f"`
+	H *big.Int `json:"h"`
 }
 
 type PeerShare struct {
@@ -89,12 +90,11 @@ func init() {
 	rand.Seed(time.Now().UTC().UnixNano())
 }
 
-func NewDkg(g *big.Int, h *big.Int, p *big.Int, t int, n int, id int, servers []string) *Dkg {
-	_g := getRandomBigInt();
+func NewDkg(g *big.Int,g_ *big.Int, h *big.Int, p *big.Int, t int, n int, id int, servers []string) *Dkg {
 	d := &Dkg{
 		Id:                   id,
 		G:                    g,
-		G_:                   _g,
+		G_:                   g_,
 		H:                    h,
 		P:                    p,
 		T:                    t,
@@ -255,7 +255,6 @@ func (d *Dkg) SetPrivateKey() {
 
 func (d *Dkg) Encrypt(m *big.Int) *Ciphertext {
 
-	hfunc := sha256.New()
 
 	// encryption
 	r := getRandomBigInt()
@@ -268,7 +267,7 @@ func (d *Dkg) Encrypt(m *big.Int) *Ciphertext {
 	w := new(big.Int).Exp(d.G, s, d.P)
 	u_ := new(big.Int).Exp(d.G_, r, d.P)
 	w_ := new(big.Int).Exp(d.G_, s, d.P)
-	e := new(big.Int).SetBytes(d.hash(hfunc, c.Bytes(), u.Bytes(), w.Bytes(), u_.Bytes(), w_.Bytes()))
+	e := new(big.Int).SetBytes(d.hash(sha256.New(), c.Bytes(), u.Bytes(), w.Bytes(), u_.Bytes(), w_.Bytes()))
 	f := new(big.Int).Add(s, new(big.Int).Mul(r, e))
 	return &Ciphertext{
 		C:  c,
@@ -290,12 +289,14 @@ func (d *Dkg) Decrypt(ciphertext *Ciphertext) *DecryptionShare {
 	hi_ := new(big.Int).Exp(g, si, d.P)
 	ei := new(big.Int).SetBytes(d.hash(sha256.New224(), ui.Bytes(), ui_.Bytes(), hi_.Bytes()))
 	fi := new(big.Int).Mod(new(big.Int).Add(si, new(big.Int).Mul(xi, ei)), d.P)
+	hi:= new(big.Int).Exp(d.G,xi,d.P)
 
 	return &DecryptionShare{
 		Id: d.Id,
 		U:  ui,
 		E:  ei,
 		F:  fi,
+		H: hi,
 	}
 }
 
@@ -306,14 +307,14 @@ func (d *Dkg) CombineShares() *big.Int {
 		productU.Mod(productU,d.P)
 	}
 	m:=new(big.Int).Xor(new(big.Int).SetBytes(d.hash(sha256.New224(), productU.Bytes())),d.Ciphertext.C)
-	return m
+	return m.Mod(m,d.P)
 }
 
 func (d *Dkg) IsDecryptionShareValid(decryptionShare *DecryptionShare) bool {
 	ei := decryptionShare.E
 	ui := decryptionShare.U
 	fi := decryptionShare.F
-	hi := new(big.Int).Exp(d.G,d.PrivateKey,d.P)
+	hi := decryptionShare.H
 
 	ufi:= new(big.Int).Exp(d.Ciphertext.U,fi,d.P)
 	uiei:= new(big.Int).Exp(ui,ei,d.P)
@@ -349,9 +350,6 @@ func (d *Dkg) IsCiphertextValid(ciphertext *Ciphertext) bool {
 
 	hashR := new(big.Int).SetBytes(d.hash(sha256.New(), c.Bytes(), u.Bytes(), w.Bytes(), u_.Bytes(), w_.Bytes()))
 
-	log.Println("for comparation")
-	log.Println("e: ",e)
-	log.Println("hashR: ",hashR)
 	if e.Cmp(hashR) == 0 {
 		return true
 	} else {

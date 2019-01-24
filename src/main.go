@@ -130,7 +130,7 @@ func postDecryptionShare(d *dkg.Dkg, c chan<- int) func (http.ResponseWriter, *h
 		log.Println("decryption share receive from ",payload.Id)
 		if d.IsDecryptionShareValid(&payload) {
 			length:=d.AppendDecryptionShare(&payload)
-			if length == d.N -1 {
+			if length == d.N  {
 				c <- dkg.CombineShareStage
 			}
 		} else {
@@ -163,6 +163,7 @@ func loadServerConfig(config string) (host,port string) {
 
 func loadDkg(config string,id int, servers []string) (*dkg.Dkg) {
 	type dkgConfig struct {
+		G_ *big.Int `json:"g_"`
 		G *big.Int `json:"g"`
 		H *big.Int `json:"h"`
 		P *big.Int `json:"p"`
@@ -181,7 +182,7 @@ func loadDkg(config string,id int, servers []string) (*dkg.Dkg) {
 	n:= len(servers)
 	t:= int(math.Ceil(float64(n)/3))
 
-	return dkg.NewDkg(dc.G,dc.H,dc.P,t,n,id,servers)
+	return dkg.NewDkg(dc.G,dc.G_,dc.H,dc.P,t,n,id,servers)
 }
 
 func loadPeers(hostAddress string ,config string) (int,[]string) {
@@ -205,7 +206,11 @@ func loadPeers(hostAddress string ,config string) (int,[]string) {
 	return index, pc.Servers
 }
 
-func stateTransition(d *dkg.Dkg,c <-chan int) {
+func changeStage(c chan<- int) {
+	c<- dkg.DecryptionStage
+}
+
+func stateTransition(d *dkg.Dkg,c chan int) {
 	for {
 		select {
 		case state:= <-c:
@@ -223,9 +228,12 @@ func stateTransition(d *dkg.Dkg,c <-chan int) {
 					d.Ciphertext = ciphertext
 					log.Println("message to encypt:",encryptionMessage)
 					go d.SendCiphertext(ciphertext,urlCiphertext)
+					c<- dkg.DecryptionStage
 				}
 			case dkg.DecryptionStage:
+				log.Println("decryption stage")
 				decryptionShare := d.Decrypt(d.Ciphertext)
+				d.AppendDecryptionShare(decryptionShare)
 				go d.SendDecrptionShare(decryptionShare,urlDecryptionShare)
 			case dkg.CombineShareStage:
 				m:=d.CombineShares()
@@ -283,7 +291,7 @@ func main() {
 
 	index,servers:=loadPeers(uri,peerConfig)
 	d:= loadDkg(dkgConfig, index, servers)
-	c:=make(chan int)
+	c:=make(chan int,1)
 	go stateTransition(d,c)
 	go waitAndStart(c,d,servers)
 
