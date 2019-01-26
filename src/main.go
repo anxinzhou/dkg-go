@@ -19,9 +19,9 @@ const (
 	urlShareStage2 = "/shareStage2"
 	urlCiphertext = "/ciphertext"
 	urlDecryptionShare = "/decryptionShare"
-	serverConfig = "etc/serverConfig.json"
 	dkgConfig = "etc/dkgConfig.json"
 	peerConfig = "etc/peerConfig.json"
+	productPeerConfig = "etc/productPeerConfig.json"
 	encryptionHost = 1
 	encryptionMessage = 20424
 )
@@ -295,11 +295,13 @@ func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
 var (
 	host string
 	port string
+	isProduct bool
 )
 
 func init() {
 	flag.StringVar(&host,"host","127.0.0.1","http host(default 127.0.0.1)")
 	flag.StringVar(&port,"port","4001","http port (default 4000)")
+	flag.BoolVar(&isProduct,"p",false,"product mode(default false)")
 	flag.Parse()
 }
 
@@ -312,7 +314,15 @@ func main() {
 
 	uri:= "http://"+host+":"+port
 
-	index,servers:=loadPeers(uri,peerConfig)
+	var index int
+	var servers []string
+	if isProduct{
+		log.Println("in product mode")
+		index,servers =loadPeers(uri,productPeerConfig)
+	} else {
+		log.Println("in test mode")
+		index,servers =loadPeers(uri,peerConfig)
+	}
 	d:= loadDkg(dkgConfig, index, servers)
 	c:=make(chan int,1)
 	go stateTransition(d,c)
