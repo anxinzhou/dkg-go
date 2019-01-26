@@ -4,27 +4,25 @@ import (
 	"dkg"
 	"encoding/json"
 	"flag"
-	"github.com/gorilla/mux"
 	"io/ioutil"
 	"log"
 	"math"
 	"math/big"
 	"net/http"
+	"net/rpc"
 	"runtime"
 	"time"
 )
 
 const (
-	urlShareStage1 = "/shareStage1"
-	urlShareStage2 = "/shareStage2"
-	urlCiphertext = "/ciphertext"
-	urlDecryptionShare = "/decryptionShare"
 	dkgConfig = "etc/dkgConfig.json"
 	peerConfig = "etc/peerConfig.json"
 	productPeerConfig = "etc/productPeerConfig.json"
 	encryptionHost = 1
 	encryptionMessage = 20424
 )
+
+
 
 var (
 	stage1StartTime time.Time
@@ -36,139 +34,6 @@ var (
 	combineShareStartTime time.Time
 	combineShareEndTime time.Time
 )
-
-func postShareStage1(d *dkg.Dkg, c chan<- int)  func (http.ResponseWriter, *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		var payload dkg.ShareStage1Payload
-		data,err:= ioutil.ReadAll(r.Body)
-		if err!=nil {
-			log.Println(err.Error())
-			http.Error(w,err.Error(),http.StatusBadRequest)
-			return
-		}
-		err =json.Unmarshal(data,&payload)
-		if err!=nil {
-			log.Println(err.Error())
-			http.Error(w,err.Error(),http.StatusBadRequest)
-		}
-
-		if d.IsQualifiedPeerForStage1(&payload) {
-			length:=d.AppendQualifiedPeerShare(&dkg.PeerShare{
-				Id: payload.Id,
-				Share:payload.Share1,
-			})
-			if length == d.N {
-				c <- dkg.SendShareStage2
-			}
-		} else {
-			log.Println("invalid")
-			http.Error(w,"vals is not qualified for stage1", http.StatusBadRequest)
-		}
-	}
-}
-
-func postShareStage2(d *dkg.Dkg, c chan<- int) func (http.ResponseWriter, *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		var payload dkg.ShareStage2Payload
-		data,err:= ioutil.ReadAll(r.Body)
-		if err!=nil {
-			log.Println(err.Error())
-			http.Error(w,err.Error(),http.StatusBadRequest)
-			return
-		}
-		err =json.Unmarshal(data,&payload)
-		if err!=nil {
-			log.Println(err.Error())
-			http.Error(w,err.Error(),http.StatusBadRequest)
-		}
-
-		Id:= payload.Id
-		publicVals:= payload.PublicVals
-		if(d.IsQualifiedPeerForStage2(&payload)) {
-			length:=d.AppendQualifiedPeerPublicVal(&dkg.PeerPublicVal{
-				Id:Id,
-				PublicVal:publicVals[0],
-			})
-			if length==d.N {
-				c <- dkg.EncrytionStage
-			}
-		} else {
-			http.Error(w,"vals is not qualified for stage2", http.StatusBadRequest)
-		}
-	}
-}
-
-func postCiphertext(d *dkg.Dkg, c chan <- int) func (http.ResponseWriter, *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		var payload dkg.Ciphertext
-		data,err:= ioutil.ReadAll(r.Body)
-		if err!=nil {
-			log.Println(err.Error())
-			http.Error(w,err.Error(),http.StatusBadRequest)
-			return
-		}
-		err =json.Unmarshal(data,&payload)
-		if err!=nil {
-			log.Println(err.Error())
-			http.Error(w,err.Error(),http.StatusBadRequest)
-		}
-
-		if d.IsCiphertextValid(&payload) {
-			d.Ciphertext = &payload
-			c <- dkg.DecryptionStage
-		} else {
-			http.Error(w,"invalid ciphertext", http.StatusBadRequest)
-		}
-	}
-}
-
-func postDecryptionShare(d *dkg.Dkg, c chan<- int) func (http.ResponseWriter, *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		var payload dkg.DecryptionShare
-		data,err:= ioutil.ReadAll(r.Body)
-		if err!=nil {
-			log.Println(err.Error())
-			http.Error(w,err.Error(),http.StatusBadRequest)
-			return
-		}
-		err =json.Unmarshal(data,&payload)
-		if err!=nil {
-			log.Println(err.Error())
-			http.Error(w, err.Error(), http.StatusBadRequest)
-		}
-
-		if d.IsDecryptionShareValid(&payload) {
-			length:=d.AppendDecryptionShare(&payload)
-			if length == d.N  {
-				c <- dkg.CombineShareStage
-			}
-		} else {
-			http.Error(w,"invalid decryption share", http.StatusBadRequest)
-		}
-	}
-}
-
-func ping(w http.ResponseWriter, r *http.Request) {
-
-}
-
-func loadServerConfig(config string) (host,port string) {
-	type serverConfig struct {
-		Host string `json:"host"`
-		Port string `json:"port"`
-	}
-
-	var sc serverConfig
-	data,err := ioutil.ReadFile(config)
-	if err!=nil {
-		panic(err)
-	}
-	err =json.Unmarshal(data,&sc)
-	if err!=nil {
-		panic(err)
-	}
-	return sc.Host, sc.Port
-}
 
 func loadDkg(config string,id int, servers []string) (*dkg.Dkg) {
 	type dkgConfig struct {
@@ -220,15 +85,15 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 	for {
 		select {
 		case state:= <-c:
-			//log.Println("server ",d.Id," :current state:",state)
+			log.Println("server ",d.Id," :current state:",state)
 			switch state {
 			case dkg.SendShareStage1:
 				stage1StartTime = time.Now()
-				go d.SendStage1(urlShareStage1)
+				go d.SendStage1()
 			case dkg.SendShareStage2:
 				stage2StartTime = time.Now()
 				log.Println("sending stage1 time:",stage2StartTime.Sub(stage1StartTime))
-				go d.SendStage2(urlShareStage2)
+				go d.SendStage2()
 			case dkg.EncrytionStage:
 				encrytStartTime = time.Now()
 				log.Println("sending stage2 time:", encrytStartTime.Sub(stage2StartTime))
@@ -241,7 +106,7 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 					encrytEndTime = time.Now()
 					log.Println("encrytion time",encrytEndTime.Sub(encrytStartTime))
 					d.Ciphertext = ciphertext
-					go d.SendCiphertext(ciphertext,urlCiphertext)
+					go d.SendCiphertext(ciphertext)
 					c<- dkg.DecryptionStage
 				}
 			case dkg.DecryptionStage:
@@ -253,7 +118,7 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 				decryptEndTime = time.Now()
 				log.Println("decrption time:",decryptEndTime.Sub(decryptStartTime))
 				d.AppendDecryptionShare(decryptionShare)
-				go d.SendDecrptionShare(decryptionShare,urlDecryptionShare)
+				go d.SendDecrptionShare(decryptionShare)
 			case dkg.CombineShareStage:
 				combineShareStartTime = time.Now()
 				log.Println("receiving share time:",combineShareStartTime.Sub(decryptEndTime))
@@ -274,14 +139,15 @@ func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
 
 	for{
 		if len(connected) == len(servers) {
+			log.Println("all connected")
 			break;
 		}
 		for i,v:=range servers {
 			if connected[i] {
 				continue
 			}
-			_, err := http.Get(v)
-			if err ==nil {
+			_,err:= rpc.DialHTTP("tcp",v)
+			if err==nil {
 				connected[i] = true
 			}
 		}
@@ -311,8 +177,7 @@ func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 
-
-	uri:= "http://"+host+":"+port
+	uri:= host+":"+port
 
 	var index int
 	var servers []string
@@ -323,20 +188,24 @@ func main() {
 		log.Println("in test mode")
 		index,servers =loadPeers(uri,peerConfig)
 	}
-	d:= loadDkg(dkgConfig, index, servers)
-	c:=make(chan int,1)
-	go stateTransition(d,c)
-	go waitAndStart(c,d,servers)
 
-	r:=mux.NewRouter()
-	r.HandleFunc(urlShareStage1,postShareStage1(d,c)).Methods("POST")
-	r.HandleFunc(urlShareStage2,postShareStage2(d,c)).Methods("POST")
-	r.HandleFunc(urlCiphertext,postCiphertext(d,c)).Methods("POST")
-	r.HandleFunc(urlDecryptionShare,postDecryptionShare(d,c)).Methods("POST")
-	r.HandleFunc("/ping",ping).Methods("GET")
-	err:=http.ListenAndServe(host+":"+port,r)
+	s := &dkg.DkgServer{
+		D : loadDkg(dkgConfig, index, servers),
+		C : make(chan int,1),
+	}
+
+	go stateTransition(s.D,s.C)
+
+	go waitAndStart(s.C,s.D,servers)
+
+	err:=rpc.Register(s)
 	if err!=nil {
-		panic(err)
+		log.Fatal(err.Error())
+	}
+	rpc.HandleHTTP()
+	err = http.ListenAndServe(uri, nil)
+	if err!=nil {
+		log.Fatal(err.Error())
 	}
 }
 

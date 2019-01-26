@@ -2,15 +2,10 @@ package dkg
 
 import (
 	"bytes"
-	"encoding/json"
-	"errors"
 	"hash"
-	"io/ioutil"
-	"log"
 	"math"
 	"math/big"
 	"math/rand"
-	"net/http"
 )
 
 func (d *Dkg) getInterpolationCoefficients(shares []*DecryptionShare,id int) *big.Int {
@@ -42,38 +37,6 @@ func (d *Dkg) hash(h hash.Hash, paras ...[]byte) []byte {
 	result := h.Sum(nil)
 	h.Reset()
 	return new(big.Int).Mod(new(big.Int).SetBytes(result), d.P).Bytes()
-}
-
-func send(payload interface{}, url string) {
-	data, err := json.Marshal(payload)
-	if err != nil {
-		log.Println(err.Error())
-		return
-	}
-
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
-	if err != nil {
-		log.Println(err.Error())
-		return
-	}
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		log.Println(err.Error())
-		return
-	}
-	if resp.StatusCode != 200 {
-		data, err := ioutil.ReadAll(resp.Body)
-		if err!=nil {
-			log.Println(err.Error())
-			return
-		}
-		log.Println(errors.New(string(data)))
-		return
-	}
-
-	defer resp.Body.Close()
 }
 
 func (d *Dkg) computePublicValsProduct(publicVals []*big.Int) *big.Int {
