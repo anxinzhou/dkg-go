@@ -10,6 +10,8 @@ import (
 	"math"
 	"math/big"
 	"net/http"
+	"runtime"
+	"time"
 )
 
 const (
@@ -21,7 +23,18 @@ const (
 	dkgConfig = "etc/dkgConfig.json"
 	peerConfig = "etc/peerConfig.json"
 	encryptionHost = 1
-	encryptionMessage = 100
+	encryptionMessage = 20424
+)
+
+var (
+	stage1StartTime time.Time
+	stage2StartTime time.Time
+	encrytStartTime time.Time
+	encrytEndTime time.Time
+	decryptStartTime time.Time
+	decryptEndTime time.Time
+	combineShareStartTime time.Time
+	combineShareEndTime time.Time
 )
 
 func postShareStage1(d *dkg.Dkg, c chan<- int)  func (http.ResponseWriter, *http.Request) {
@@ -39,13 +52,12 @@ func postShareStage1(d *dkg.Dkg, c chan<- int)  func (http.ResponseWriter, *http
 			http.Error(w,err.Error(),http.StatusBadRequest)
 		}
 
-		log.Println("share stage1 receive from ", payload.Id)
-		if(d.IsQualifiedPeerForStage1(&payload)) {
+		if d.IsQualifiedPeerForStage1(&payload) {
 			length:=d.AppendQualifiedPeerShare(&dkg.PeerShare{
 				Id: payload.Id,
 				Share:payload.Share1,
 			})
-			if length == d.N-1 {
+			if length == d.N {
 				c <- dkg.SendShareStage2
 			}
 		} else {
@@ -70,7 +82,6 @@ func postShareStage2(d *dkg.Dkg, c chan<- int) func (http.ResponseWriter, *http.
 			http.Error(w,err.Error(),http.StatusBadRequest)
 		}
 
-		log.Println("share stage2 receive from ", payload.Id)
 		Id:= payload.Id
 		publicVals:= payload.PublicVals
 		if(d.IsQualifiedPeerForStage2(&payload)) {
@@ -78,7 +89,7 @@ func postShareStage2(d *dkg.Dkg, c chan<- int) func (http.ResponseWriter, *http.
 				Id:Id,
 				PublicVal:publicVals[0],
 			})
-			if length==d.N-1 {
+			if length==d.N {
 				c <- dkg.EncrytionStage
 			}
 		} else {
@@ -102,7 +113,6 @@ func postCiphertext(d *dkg.Dkg, c chan <- int) func (http.ResponseWriter, *http.
 			http.Error(w,err.Error(),http.StatusBadRequest)
 		}
 
-		log.Println("receive ciphertext")
 		if d.IsCiphertextValid(&payload) {
 			d.Ciphertext = &payload
 			c <- dkg.DecryptionStage
@@ -127,7 +137,6 @@ func postDecryptionShare(d *dkg.Dkg, c chan<- int) func (http.ResponseWriter, *h
 			http.Error(w, err.Error(), http.StatusBadRequest)
 		}
 
-		log.Println("decryption share receive from ",payload.Id)
 		if d.IsDecryptionShareValid(&payload) {
 			length:=d.AppendDecryptionShare(&payload)
 			if length == d.N  {
@@ -167,6 +176,7 @@ func loadDkg(config string,id int, servers []string) (*dkg.Dkg) {
 		G *big.Int `json:"g"`
 		H *big.Int `json:"h"`
 		P *big.Int `json:"p"`
+		Q *big.Int `json:"q"`
 	}
 
 	var dc dkgConfig
@@ -182,7 +192,7 @@ func loadDkg(config string,id int, servers []string) (*dkg.Dkg) {
 	n:= len(servers)
 	t:= int(math.Ceil(float64(n)/3))
 
-	return dkg.NewDkg(dc.G,dc.G_,dc.H,dc.P,t,n,id,servers)
+	return dkg.NewDkg(dc.G,dc.G_,dc.H,dc.P,dc.Q,t,n,id,servers)
 }
 
 func loadPeers(hostAddress string ,config string) (int,[]string) {
@@ -206,38 +216,54 @@ func loadPeers(hostAddress string ,config string) (int,[]string) {
 	return index, pc.Servers
 }
 
-func changeStage(c chan<- int) {
-	c<- dkg.DecryptionStage
-}
-
 func stateTransition(d *dkg.Dkg,c chan int) {
 	for {
 		select {
 		case state:= <-c:
-			log.Println("current state:",state)
+			//log.Println("server ",d.Id," :current state:",state)
 			switch state {
 			case dkg.SendShareStage1:
+				stage1StartTime = time.Now()
 				go d.SendStage1(urlShareStage1)
 			case dkg.SendShareStage2:
+				stage2StartTime = time.Now()
+				log.Println("sending stage1 time:",stage2StartTime.Sub(stage1StartTime))
 				go d.SendStage2(urlShareStage2)
 			case dkg.EncrytionStage:
+				encrytStartTime = time.Now()
+				log.Println("sending stage2 time:", encrytStartTime.Sub(stage2StartTime))
 				d.SetPublicKey()
 				d.SetPrivateKey()
+				log.Println("total dkg time:",time.Since(stage1StartTime))
+
 				if d.Id == encryptionHost {
 					ciphertext:=d.Encrypt(big.NewInt(encryptionMessage))
+					encrytEndTime = time.Now()
+					log.Println("encrytion time",encrytEndTime.Sub(encrytStartTime))
 					d.Ciphertext = ciphertext
-					log.Println("message to encypt:",encryptionMessage)
 					go d.SendCiphertext(ciphertext,urlCiphertext)
 					c<- dkg.DecryptionStage
 				}
 			case dkg.DecryptionStage:
-				log.Println("decryption stage")
+				decryptStartTime = time.Now()
+				if d.Id == encryptionHost {
+					log.Println("receiving encrption time:",decryptStartTime.Sub(encrytEndTime))
+				}
 				decryptionShare := d.Decrypt(d.Ciphertext)
+				decryptEndTime = time.Now()
+				log.Println("decrption time:",decryptEndTime.Sub(decryptStartTime))
 				d.AppendDecryptionShare(decryptionShare)
 				go d.SendDecrptionShare(decryptionShare,urlDecryptionShare)
 			case dkg.CombineShareStage:
+				combineShareStartTime = time.Now()
+				log.Println("receiving share time:",combineShareStartTime.Sub(decryptEndTime))
 				m:=d.CombineShares()
-				log.Println("message decrpted: ",m)
+				combineShareEndTime= time.Now()
+				log.Println("combine share time:",combineShareEndTime.Sub(combineShareStartTime))
+				log.Println("total time:",combineShareEndTime.Sub(stage1StartTime))
+				if m.Cmp(big.NewInt(encryptionMessage))!=0 {
+					panic("can not pass text")
+				}
 			}
 		}
 	}
@@ -248,7 +274,6 @@ func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
 
 	for{
 		if len(connected) == len(servers) {
-			log.Println("all connected")
 			break;
 		}
 		for i,v:=range servers {
@@ -257,11 +282,10 @@ func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
 			}
 			_, err := http.Get(v)
 			if err ==nil {
-				log.Println(v," is connected")
 				connected[i] = true
 			}
 		}
-
+		runtime.Gosched()
 	}
 
 
@@ -287,7 +311,6 @@ func main() {
 
 
 	uri:= "http://"+host+":"+port
-	log.Println(uri)
 
 	index,servers:=loadPeers(uri,peerConfig)
 	d:= loadDkg(dkgConfig, index, servers)

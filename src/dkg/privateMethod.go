@@ -13,26 +13,23 @@ import (
 	"net/http"
 )
 
-func (d *Dkg) getInterpolationCoefficients(id int) *big.Int {
-	topHalf:= big.NewInt(1)
-	for _,v:= range d.DecryptionShares {
+func (d *Dkg) getInterpolationCoefficients(shares []*DecryptionShare,id int) *big.Int {
+	product:= big.NewInt(1)
+	for _,v:= range shares {
 		if id!=v.Id {
-			topHalf.Mul(topHalf,big.NewInt(int64(v.Id)))
+			tmp:=new(big.Int).Mul(big.NewInt(int64(0-v.Id)),new(big.Int).ModInverse(big.NewInt(int64(id-v.Id)),d.Q))
+			product.Mul(product,tmp)
+			product.Mod(product,d.Q)
 		}
 	}
-	bottomHalf:= big.NewInt(1)
-	for _,v:= range d.DecryptionShares {
-		if id!=v.Id {
-			bottomHalf.Mul(bottomHalf,big.NewInt(int64(v.Id-id)))
-		}
-	}
-	return new(big.Int).Mod(new(big.Int).Div(topHalf,bottomHalf),d.P)
+
+	return product
 }
 
 
 func getRandomBigInt() *big.Int {
-	min := math.MaxInt8
-	max := math.MaxInt16
+	min := math.MaxInt16
+	max := math.MaxInt32
 	return big.NewInt(int64(min + rand.Intn(max-min)))
 }
 
@@ -51,13 +48,13 @@ func send(payload interface{}, url string) {
 	data, err := json.Marshal(payload)
 	if err != nil {
 		log.Println(err.Error())
-		panic(err)
+		return
 	}
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
 	if err != nil {
 		log.Println(err.Error())
-		panic(err)
+		return
 	}
 
 	client := &http.Client{}

@@ -5,6 +5,7 @@ import (
 	"log"
 	"math/big"
 	"math/rand"
+	"runtime"
 	"sync"
 	"time"
 )
@@ -63,6 +64,7 @@ type Dkg struct {
 	G_                 *big.Int
 	H                  *big.Int
 	P                  *big.Int
+	Q   			   *big.Int
 	Id                 int
 	T                  int
 	N                  int
@@ -90,13 +92,14 @@ func init() {
 	rand.Seed(time.Now().UTC().UnixNano())
 }
 
-func NewDkg(g *big.Int,g_ *big.Int, h *big.Int, p *big.Int, t int, n int, id int, servers []string) *Dkg {
+func NewDkg(g *big.Int,g_ *big.Int, h *big.Int, p *big.Int, q *big.Int, t int, n int, id int, servers []string) *Dkg {
 	d := &Dkg{
 		Id:                   id,
 		G:                    g,
 		G_:                   g_,
 		H:                    h,
 		P:                    p,
+		Q:					  q,
 		T:                    t,
 		N:                    n,
 		Servers:              servers,
@@ -109,11 +112,11 @@ func NewDkg(g *big.Int,g_ *big.Int, h *big.Int, p *big.Int, t int, n int, id int
 	paras2 := generateRandomParas(t+1)
 
 	d.Shares1 = computeShares(func(z *big.Int) *big.Int {
-		return polynomial(paras1, z, p)
+		return polynomial(paras1, z, q)
 	}, n)
 
 	d.Shares2 = computeShares(func(z *big.Int) *big.Int {
-		return polynomial(paras2, z, p)
+		return polynomial(paras2, z, q)
 	}, n)
 
 	d.PublicVals1 = computePublicVals(paras1, g, t, p)
@@ -127,7 +130,7 @@ func NewDkg(g *big.Int,g_ *big.Int, h *big.Int, p *big.Int, t int, n int, id int
 	d.QualifiedPeerPublicVals = make([]*PeerPublicVal, 1, n)
 	d.QualifiedPeerPublicVals[0] = &PeerPublicVal{
 		Id:id,
-		PublicVal:d.CombinedPublicVals[0],
+		PublicVal:d.PublicVals1[0],
 	}
 
 	return d
@@ -228,7 +231,6 @@ func (d *Dkg) SendCiphertext(ciphertext *Ciphertext, url string) {
 }
 
 func (d *Dkg) SendDecrptionShare(decryptionShare *DecryptionShare, url string) {
-	d.AppendDecryptionShare(decryptionShare)
 	for i, v := range d.Servers {
 		if i+1 == d.Id {
 			continue
@@ -238,11 +240,10 @@ func (d *Dkg) SendDecrptionShare(decryptionShare *DecryptionShare, url string) {
 }
 
 func (d *Dkg) SetPublicKey() {
-	d.PublicKey = big.NewInt(0)
+	d.PublicKey = big.NewInt(1)
 	for _, v := range d.QualifiedPeerPublicVals {
-		d.PublicKey.Add(d.PublicKey, v.PublicVal)
+		d.PublicKey = new(big.Int).Mod(new(big.Int).Mul(d.PublicKey, v.PublicVal),d.P)
 	}
-	d.PublicKey.Mod(d.PublicKey, d.P)
 }
 
 func (d *Dkg) SetPrivateKey() {
@@ -250,7 +251,7 @@ func (d *Dkg) SetPrivateKey() {
 	for _, v := range d.QualifiedPeerShares {
 		d.PrivateKey.Add(d.PrivateKey, v.Share)
 	}
-	d.PrivateKey.Mod(d.PrivateKey, d.P)
+	d.PrivateKey.Mod(d.PrivateKey, d.Q)
 }
 
 func (d *Dkg) Encrypt(m *big.Int) *Ciphertext {
@@ -260,15 +261,15 @@ func (d *Dkg) Encrypt(m *big.Int) *Ciphertext {
 	r := getRandomBigInt()
 	s := getRandomBigInt()
 	hr := new(big.Int).Exp(d.PublicKey, r, d.P)
-	hashOfhr := d.hash(sha256.New(), hr.Bytes())
+	hashOfhr := new(big.Int).SetBytes(d.hash(sha256.New(), hr.Bytes()))
 
-	c := new(big.Int).Mod(new(big.Int).Xor(new(big.Int).SetBytes(hashOfhr), m), d.P)
+	c := new(big.Int).Xor(hashOfhr, m)
 	u := new(big.Int).Exp(d.G, r, d.P)
 	w := new(big.Int).Exp(d.G, s, d.P)
 	u_ := new(big.Int).Exp(d.G_, r, d.P)
 	w_ := new(big.Int).Exp(d.G_, s, d.P)
 	e := new(big.Int).SetBytes(d.hash(sha256.New(), c.Bytes(), u.Bytes(), w.Bytes(), u_.Bytes(), w_.Bytes()))
-	f := new(big.Int).Add(s, new(big.Int).Mul(r, e))
+	f := new(big.Int).Mod(new(big.Int).Add(s, new(big.Int).Mul(r, e)),d.P)
 	return &Ciphertext{
 		C:  c,
 		U:  u,
@@ -287,7 +288,7 @@ func (d *Dkg) Decrypt(ciphertext *Ciphertext) *DecryptionShare {
 	ui := new(big.Int).Exp(u, xi, d.P)
 	ui_ := new(big.Int).Exp(u, si, d.P)
 	hi_ := new(big.Int).Exp(g, si, d.P)
-	ei := new(big.Int).SetBytes(d.hash(sha256.New224(), ui.Bytes(), ui_.Bytes(), hi_.Bytes()))
+	ei := new(big.Int).SetBytes(d.hash(sha256.New(), ui.Bytes(), ui_.Bytes(), hi_.Bytes()))
 	fi := new(big.Int).Mod(new(big.Int).Add(si, new(big.Int).Mul(xi, ei)), d.P)
 	hi:= new(big.Int).Exp(d.G,xi,d.P)
 
@@ -301,13 +302,20 @@ func (d *Dkg) Decrypt(ciphertext *Ciphertext) *DecryptionShare {
 }
 
 func (d *Dkg) CombineShares() *big.Int {
+
+	shares:= d.DecryptionShares[:d.T+1]
+
 	productU:= big.NewInt(1)
-	for _,v:= range d.DecryptionShares {
-		productU.Mul(productU,new(big.Int).Exp(v.U,d.getInterpolationCoefficients(v.Id),d.P))
+	for _,v:= range shares {
+		interpolation:= d.getInterpolationCoefficients(shares,v.Id)
+		tmp := new(big.Int).Exp(v.U,interpolation,d.P)
+		productU.Mul(productU,tmp)
 		productU.Mod(productU,d.P)
 	}
-	m:=new(big.Int).Xor(new(big.Int).SetBytes(d.hash(sha256.New224(), productU.Bytes())),d.Ciphertext.C)
-	return m.Mod(m,d.P)
+
+	hOfProductU:= new(big.Int).SetBytes(d.hash(sha256.New(), productU.Bytes()))
+	m:=new(big.Int).Xor(hOfProductU,d.Ciphertext.C)
+	return m
 }
 
 func (d *Dkg) IsDecryptionShareValid(decryptionShare *DecryptionShare) bool {
@@ -316,20 +324,25 @@ func (d *Dkg) IsDecryptionShareValid(decryptionShare *DecryptionShare) bool {
 	fi := decryptionShare.F
 	hi := decryptionShare.H
 
-	ufi:= new(big.Int).Exp(d.Ciphertext.U,fi,d.P)
-	uiei:= new(big.Int).Exp(ui,ei,d.P)
-	ui_:= new(big.Int).Mod(new(big.Int).Mul(ufi,new(big.Int).ModInverse(uiei,d.P)),d.P)
+	for {
+		if d.Ciphertext!=nil {
+			ufi:= new(big.Int).Exp(d.Ciphertext.U,fi,d.P)
+			uiei:= new(big.Int).Exp(ui,ei,d.P)
+			ui_:= new(big.Int).Mod(new(big.Int).Mul(ufi,new(big.Int).ModInverse(uiei,d.P)),d.P)
 
-	gfi:= new(big.Int).Exp(d.G,fi,d.P)
-	hiei:= new(big.Int).Exp(hi,ei,d.P)
-	hi_:= new(big.Int).Mod(new(big.Int).Mul(gfi,new(big.Int).ModInverse(hiei,d.P)),d.P)
+			gfi:= new(big.Int).Exp(d.G,fi,d.P)
+			hiei:= new(big.Int).Exp(hi,ei,d.P)
+			hi_:= new(big.Int).Mod(new(big.Int).Mul(gfi,new(big.Int).ModInverse(hiei,d.P)),d.P)
 
-	hashR:= new(big.Int).SetBytes(d.hash(sha256.New224(),ui.Bytes(),ui_.Bytes(),hi_.Bytes()))
+			hashR:= new(big.Int).SetBytes(d.hash(sha256.New(),ui.Bytes(),ui_.Bytes(),hi_.Bytes()))
 
-	if ei.Cmp(hashR) == 0 {
-		return true
-	} else {
-		return false
+			if ei.Cmp(hashR) == 0 {
+				return true
+			} else {
+				return false
+			}
+		}
+		runtime.Gosched()
 	}
 }
 
