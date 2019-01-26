@@ -87,6 +87,8 @@ type Dkg struct {
 
 	PublicKey          *big.Int
 	PrivateKey         *big.Int
+
+	RPCClients   []*rpc.Client
 }
 
 func init() {
@@ -133,6 +135,8 @@ func NewDkg(g *big.Int,g_ *big.Int, h *big.Int, p *big.Int, q *big.Int, t int, n
 		Id:id,
 		PublicVal:d.PublicVals1[0],
 	}
+
+	d.RPCClients = make([]*rpc.Client,d.N,d.N)
 
 	return d
 }
@@ -196,50 +200,29 @@ func (d *Dkg) IsQualifiedPeerForStage2(payload *ShareStage2Payload) bool {
 }
 
 func (d *Dkg) SendStage1() {
-	for i, v := range d.Servers {
+	for i, _ := range d.Servers {
 		if i+1 == d.Id {
 			continue
 		}
-		client, err:= rpc.DialHTTP("tcp",v)
-		if err!=nil {
-			log.Fatal(err.Error())
-		}
 		var reply int
-		client.Go("DkgServer.SendShareStage1",&ShareStage1Payload{
+		d.RPCClients[i].Go("DkgServer.SendShareStage1",&ShareStage1Payload{
 			Id:               d.Id,
 			Share1:             d.Shares1[i],
 			Share2:             d.Shares2[i],
 			CombinedPublicVals: d.CombinedPublicVals,
 		},&reply,nil)
-		//replyCall:=<-divCall.Done
-		//if replyCall.Error!=nil {
-		//	log.Fatal(replyCall.Error.Error())
-		//}
-
-		//synchronous
-		//err =client.Call("DkgServer.SendShareStage1",&ShareStage1Payload{
-		//	Id:               d.Id,
-		//	Share1:             d.Shares1[i],
-		//	Share2:             d.Shares2[i],
-		//	CombinedPublicVals: d.CombinedPublicVals,
-		//},&reply)
-		//if err!=nil {
-		//	log.Fatal(err.Error())
-		//}
+		log.Println(d.Id,"tests")
 	}
 }
 
 func (d *Dkg) SendStage2() {
-	for i, v := range d.Servers {
+	for i, _ := range d.Servers {
 		if i+1 == d.Id {
 			continue
 		}
-		client, err:= rpc.DialHTTP("tcp",v)
-		if err!=nil {
-			log.Fatal(err.Error())
-		}
+
 		var reply int
-		client.Go("DkgServer.SendShareStage2",&ShareStage2Payload{
+		d.RPCClients[i].Go("DkgServer.SendShareStage2",&ShareStage2Payload{
 			Id: d.Id,
 			Share: d.Shares1[i],
 			PublicVals: d.PublicVals1,
@@ -248,30 +231,23 @@ func (d *Dkg) SendStage2() {
 }
 
 func (d *Dkg) SendCiphertext(ciphertext *Ciphertext) {
-	for i, v := range d.Servers {
+	for i, _ := range d.Servers {
 		if i+1 == d.Id {
 			continue
 		}
-		client, err:= rpc.DialHTTP("tcp",v)
-		if err!=nil {
-			log.Fatal(err.Error())
-		}
+
 		var reply int
-		client.Go("DkgServer.SendCiphertext",ciphertext,&reply,nil)
+		d.RPCClients[i].Go("DkgServer.SendCiphertext",ciphertext,&reply,nil)
 	}
 }
 
 func (d *Dkg) SendDecrptionShare(decryptionShare *DecryptionShare) {
-	for i, v := range d.Servers {
+	for i, _ := range d.Servers {
 		if i+1 == d.Id {
 			continue
 		}
-		client, err:= rpc.DialHTTP("tcp",v)
-		if err!=nil {
-			log.Fatal(err.Error())
-		}
 		var reply int
-		client.Go("DkgServer.SendDecryptionShare",decryptionShare,&reply,nil)
+		d.RPCClients[i].Go("DkgServer.SendDecryptionShare",decryptionShare,&reply,nil)
 	}
 }
 

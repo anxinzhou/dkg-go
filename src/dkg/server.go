@@ -11,7 +11,6 @@ type DkgServer struct {
 }
 
 func(s *DkgServer) SendShareStage1(payload *ShareStage1Payload, reply *int) error {
-	log.Println("receive a share")
 	reply = nil
 	if s.D.IsQualifiedPeerForStage1(payload) {
 		length:=s.D.AppendQualifiedPeerShare(&PeerShare{

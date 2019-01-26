@@ -138,16 +138,20 @@ func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
 	connected:=make(map[int]bool)
 
 	for{
-		if len(connected) == len(servers) {
+		if len(connected) == len(servers)-1 {
 			log.Println("all connected")
 			break;
 		}
 		for i,v:=range servers {
-			if connected[i] {
+			if i+1==d.Id || connected[i] {
 				continue
 			}
-			_,err:= rpc.DialHTTP("tcp",v)
+			client,err:= rpc.DialHTTP("tcp",v)
 			if err==nil {
+				if client==nil {
+					log.Println("test")
+				}
+				d.RPCClients[i] = client
 				connected[i] = true
 			}
 		}
