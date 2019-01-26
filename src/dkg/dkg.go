@@ -200,25 +200,41 @@ func (d *Dkg) IsQualifiedPeerForStage2(payload *ShareStage2Payload) bool {
 }
 
 func (d *Dkg) SendStage1() {
-	for i, _ := range d.Servers {
+	for i, v := range d.Servers {
 		if i+1 == d.Id {
 			continue
 		}
 		var reply int
+		if d.RPCClients[i]==nil {
+			log.Println("reconnect")
+			var err error
+			d.RPCClients[i], err = rpc.DialHTTP("tcp",v)
+			if err !=nil {
+				log.Println(err.Error())
+			}
+		}
 		d.RPCClients[i].Go("DkgServer.SendShareStage1",&ShareStage1Payload{
 			Id:               d.Id,
 			Share1:             d.Shares1[i],
 			Share2:             d.Shares2[i],
 			CombinedPublicVals: d.CombinedPublicVals,
 		},&reply,nil)
-		log.Println(d.Id,"tests")
 	}
 }
 
 func (d *Dkg) SendStage2() {
-	for i, _ := range d.Servers {
+	for i, v := range d.Servers {
 		if i+1 == d.Id {
 			continue
+		}
+
+		if d.RPCClients[i]==nil {
+			log.Println("reconnect")
+			var err error
+			d.RPCClients[i], err = rpc.DialHTTP("tcp",v)
+			if err !=nil {
+				log.Println(err.Error())
+			}
 		}
 
 		var reply int
@@ -231,9 +247,18 @@ func (d *Dkg) SendStage2() {
 }
 
 func (d *Dkg) SendCiphertext(ciphertext *Ciphertext) {
-	for i, _ := range d.Servers {
+	for i, v := range d.Servers {
 		if i+1 == d.Id {
 			continue
+		}
+
+		if d.RPCClients[i]==nil {
+			log.Println("reconnect")
+			var err error
+			d.RPCClients[i], err = rpc.DialHTTP("tcp",v)
+			if err !=nil {
+				log.Println(err.Error())
+			}
 		}
 
 		var reply int
@@ -242,10 +267,20 @@ func (d *Dkg) SendCiphertext(ciphertext *Ciphertext) {
 }
 
 func (d *Dkg) SendDecrptionShare(decryptionShare *DecryptionShare) {
-	for i, _ := range d.Servers {
+	for i, v := range d.Servers {
 		if i+1 == d.Id {
 			continue
 		}
+
+		if d.RPCClients[i]==nil {
+			log.Println("reconnect")
+			var err error
+			d.RPCClients[i], err = rpc.DialHTTP("tcp",v)
+			if err !=nil {
+				log.Println(err.Error())
+			}
+		}
+
 		var reply int
 		d.RPCClients[i].Go("DkgServer.SendDecryptionShare",decryptionShare,&reply,nil)
 	}
