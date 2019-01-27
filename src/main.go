@@ -86,7 +86,7 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 	for {
 		select {
 		case state:= <-c:
-			log.Println("server ",d.Id," :current state:",state)
+			//log.Println("server ",d.Id," :current state:",state)
 			switch state {
 			case dkg.SendShareStage1:
 				stage1StartTime = time.Now()
@@ -97,12 +97,14 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 				log.Println("sending stage1 time:",stage2StartTime.Sub(stage1StartTime))
 				go d.SendStage2()
 			case dkg.EncrytionStage:
-				encrytStartTime = time.Now()
-				log.Println("sending stage2 time:", encrytStartTime.Sub(stage2StartTime))
+				log.Println("sending stage2 time:", time.Since(stage2StartTime))
 				d.SetPublicKey()
 				d.SetPrivateKey()
 				log.Println("!!!!!! total dkg time:",time.Since(startTime))
-
+				<-time.After(2*time.Second)
+				log.Println("----------------------------------")
+				log.Println("start encryption and decryption ")
+				encrytStartTime = time.Now()
 				if d.Id == encryptionHost {
 					ciphertext:=d.Encrypt(big.NewInt(encryptionMessage))
 					encrytEndTime = time.Now()
