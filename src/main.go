@@ -25,6 +25,7 @@ const (
 
 
 var (
+	startTime time.Time
 	stage1StartTime time.Time
 	stage2StartTime time.Time
 	encrytStartTime time.Time
@@ -89,6 +90,7 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 			switch state {
 			case dkg.SendShareStage1:
 				stage1StartTime = time.Now()
+				log.Println("connection time:", stage1StartTime.Sub(startTime))
 				go d.SendStage1()
 			case dkg.SendShareStage2:
 				stage2StartTime = time.Now()
@@ -99,7 +101,7 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 				log.Println("sending stage2 time:", encrytStartTime.Sub(stage2StartTime))
 				d.SetPublicKey()
 				d.SetPrivateKey()
-				log.Println("total dkg time:",time.Since(stage1StartTime))
+				log.Println("!!!!!! total dkg time:",time.Since(startTime))
 
 				if d.Id == encryptionHost {
 					ciphertext:=d.Encrypt(big.NewInt(encryptionMessage))
@@ -111,9 +113,7 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 				}
 			case dkg.DecryptionStage:
 				decryptStartTime = time.Now()
-				if d.Id == encryptionHost {
-					log.Println("receiving encrption time:",decryptStartTime.Sub(encrytEndTime))
-				}
+				log.Println("receiving encrption time:",decryptStartTime.Sub(encrytStartTime))
 				decryptionShare := d.Decrypt(d.Ciphertext)
 				decryptEndTime = time.Now()
 				log.Println("decrption time:",decryptEndTime.Sub(decryptStartTime))
@@ -125,7 +125,7 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 				m:=d.CombineShares()
 				combineShareEndTime= time.Now()
 				log.Println("combine share time:",combineShareEndTime.Sub(combineShareStartTime))
-				log.Println("total time:",combineShareEndTime.Sub(stage1StartTime))
+				log.Println("!!!!!! decryption total time:",combineShareEndTime.Sub(encrytStartTime))
 				if m.Cmp(big.NewInt(encryptionMessage))!=0 {
 					panic("can not pass text")
 				}
@@ -135,6 +135,8 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 }
 
 func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
+	<-time.After(2 * time.Second)
+	startTime= time.Now()
 	connected:=make(map[int]bool)
 
 	for{
@@ -149,10 +151,12 @@ func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
 			client,err:= rpc.DialHTTP("tcp",v)
 			if err==nil {
 				if client==nil {
-					log.Println("test")
+					panic("lost client")
 				}
 				d.RPCClients[i] = client
 				connected[i] = true
+			} else {
+				log.Println(v,"not open")
 			}
 		}
 		runtime.Gosched()
@@ -199,7 +203,6 @@ func main() {
 	}
 
 	go stateTransition(s.D,s.C)
-
 	go waitAndStart(s.C,s.D,servers)
 
 	err:=rpc.Register(s)

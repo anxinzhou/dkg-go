@@ -6,7 +6,6 @@ import (
 	"math/big"
 	"math/rand"
 	"net/rpc"
-	"runtime"
 	"sync"
 	"time"
 )
@@ -45,6 +44,7 @@ type Ciphertext struct {
 type DecryptionShare struct {
 	Id int      `json:"id"`
 	U  *big.Int `json:"u"`
+	CiphertextU *big.Int `json:"ciphertextU"`
 	E  *big.Int `json:"e"`
 	F  *big.Int `json:"f"`
 	H *big.Int `json:"h"`
@@ -345,6 +345,7 @@ func (d *Dkg) Decrypt(ciphertext *Ciphertext) *DecryptionShare {
 		E:  ei,
 		F:  fi,
 		H: hi,
+		CiphertextU:ciphertext.U,
 	}
 }
 
@@ -371,25 +372,21 @@ func (d *Dkg) IsDecryptionShareValid(decryptionShare *DecryptionShare) bool {
 	fi := decryptionShare.F
 	hi := decryptionShare.H
 
-	for {
-		if d.Ciphertext!=nil {
-			ufi:= new(big.Int).Exp(d.Ciphertext.U,fi,d.P)
-			uiei:= new(big.Int).Exp(ui,ei,d.P)
-			ui_:= new(big.Int).Mod(new(big.Int).Mul(ufi,new(big.Int).ModInverse(uiei,d.P)),d.P)
 
-			gfi:= new(big.Int).Exp(d.G,fi,d.P)
-			hiei:= new(big.Int).Exp(hi,ei,d.P)
-			hi_:= new(big.Int).Mod(new(big.Int).Mul(gfi,new(big.Int).ModInverse(hiei,d.P)),d.P)
+	ufi:= new(big.Int).Exp(decryptionShare.CiphertextU,fi,d.P)
+	uiei:= new(big.Int).Exp(ui,ei,d.P)
+	ui_:= new(big.Int).Mod(new(big.Int).Mul(ufi,new(big.Int).ModInverse(uiei,d.P)),d.P)
 
-			hashR:= new(big.Int).SetBytes(d.hash(sha256.New(),ui.Bytes(),ui_.Bytes(),hi_.Bytes()))
+	gfi:= new(big.Int).Exp(d.G,fi,d.P)
+	hiei:= new(big.Int).Exp(hi,ei,d.P)
+	hi_:= new(big.Int).Mod(new(big.Int).Mul(gfi,new(big.Int).ModInverse(hiei,d.P)),d.P)
 
-			if ei.Cmp(hashR) == 0 {
-				return true
-			} else {
-				return false
-			}
-		}
-		runtime.Gosched()
+	hashR:= new(big.Int).SetBytes(d.hash(sha256.New(),ui.Bytes(),ui_.Bytes(),hi_.Bytes()))
+
+	if ei.Cmp(hashR) == 0 {
+		return true
+	} else {
+		return false
 	}
 }
 
