@@ -317,6 +317,7 @@ func (d *Dkg) Encrypt(m *big.Int) *Ciphertext {
 	w_ := new(big.Int).Exp(d.G_, s, d.P)
 	e := new(big.Int).SetBytes(d.hash(sha256.New(), c.Bytes(), u.Bytes(), w.Bytes(), u_.Bytes(), w_.Bytes()))
 	f := new(big.Int).Mod(new(big.Int).Add(s, new(big.Int).Mul(r, e)),d.P)
+
 	return &Ciphertext{
 		C:  c,
 		U:  u,

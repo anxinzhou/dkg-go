@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"net/rpc"
 	"runtime"
+	"sync"
 	"time"
 )
 
@@ -136,35 +137,36 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 	}
 }
 
+func connect(d *dkg.Dkg,connected map[int]bool, server string, id int, wg *sync.WaitGroup) {
+	client,err:= rpc.DialHTTP("tcp",server)
+	if err==nil {
+		if client==nil {
+			panic("lost client")
+		}
+		d.RPCClients[id] = client
+		connected[id] = true
+	} else {
+		log.Println(server,"not open")
+	}
+	wg.Done()
+}
+
 func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
-	<-time.After(2 * time.Second)
+	<-time.After(2*time.Second)
 	startTime= time.Now()
 	connected:=make(map[int]bool)
+	var wg sync.WaitGroup
+	wg.Add(len(servers)-1)
 
-	for{
-		if len(connected) == len(servers)-1 {
-			log.Println("all connected")
-			break;
+	for i,v:=range servers {
+		if i+1==d.Id || connected[i] {
+			continue
 		}
-		for i,v:=range servers {
-			if i+1==d.Id || connected[i] {
-				continue
-			}
-			client,err:= rpc.DialHTTP("tcp",v)
-			if err==nil {
-				if client==nil {
-					panic("lost client")
-				}
-				d.RPCClients[i] = client
-				connected[i] = true
-			} else {
-				log.Println(v,"not open")
-			}
-		}
-		runtime.Gosched()
+		go connect(d,connected,v,i,&wg)
 	}
 
-
+	wg.Wait()
+	log.Println("all connected")
 	c <- dkg.SendShareStage1
 }
 
@@ -183,7 +185,7 @@ func init() {
 
 func main() {
 	// log
-
+	runtime.GOMAXPROCS(1)
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 
