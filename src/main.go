@@ -137,14 +137,13 @@ func stateTransition(d *dkg.Dkg,c chan int) {
 	}
 }
 
-func connect(d *dkg.Dkg,connected map[int]bool, server string, id int, wg *sync.WaitGroup) {
+func connect(d *dkg.Dkg, server string, id int, wg *sync.WaitGroup) {
 	client,err:= rpc.DialHTTP("tcp",server)
 	if err==nil {
 		if client==nil {
 			panic("lost client")
 		}
 		d.RPCClients[id] = client
-		connected[id] = true
 	} else {
 		log.Println(server,"not open")
 	}
@@ -154,15 +153,14 @@ func connect(d *dkg.Dkg,connected map[int]bool, server string, id int, wg *sync.
 func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
 	<-time.After(2*time.Second)
 	startTime= time.Now()
-	connected:=make(map[int]bool)
 	var wg sync.WaitGroup
 	wg.Add(len(servers)-1)
 
 	for i,v:=range servers {
-		if i+1==d.Id || connected[i] {
+		if i+1==d.Id {
 			continue
 		}
-		go connect(d,connected,v,i,&wg)
+		go connect(d,v,i,&wg)
 	}
 
 	wg.Wait()
