@@ -4,6 +4,8 @@ killAll(){
 pkill -P $$
 }
 
+export GOPATH=$(dirname $(pwd))
+
 (go run main.go -port=4000)&
 (go run main.go -port=4001)&
 (go run main.go -port=4002)&
