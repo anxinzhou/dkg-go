@@ -199,26 +199,45 @@ func (d *Dkg) IsQualifiedPeerForStage2(payload *ShareStage2Payload) bool {
 	}
 }
 
+func (d *Dkg) Connect(server string, id int) {
+	for {
+		client,err:= rpc.DialHTTP("tcp",server)
+		if err==nil {
+			if client==nil {
+				log.Println("lost client")
+				continue
+			}
+			d.RPCClients[id] = client
+			break;
+		} else {
+			log.Println(server,"not open")
+		}
+		log.Println("reconnect")
+	}
+	log.Println("connected")
+	//wg.Done()
+}
+
 func (d *Dkg) SendStage1() {
 	for i, v := range d.Servers {
 		if i+1 == d.Id {
 			continue
 		}
-		var reply int
-		if d.RPCClients[i]==nil {
-			log.Println("reconnect")
-			var err error
-			d.RPCClients[i], err = rpc.DialHTTP("tcp",v)
-			if err !=nil {
-				log.Println(err.Error())
-			}
+
+		handler:= func(i int) {
+			var reply int
+			d.RPCClients[i].Go("DkgServer.SendShareStage1",&ShareStage1Payload{
+				Id:               d.Id,
+				Share1:             d.Shares1[i],
+				Share2:             d.Shares2[i],
+				CombinedPublicVals: d.CombinedPublicVals,
+			},&reply,nil)
 		}
-		d.RPCClients[i].Go("DkgServer.SendShareStage1",&ShareStage1Payload{
-			Id:               d.Id,
-			Share1:             d.Shares1[i],
-			Share2:             d.Shares2[i],
-			CombinedPublicVals: d.CombinedPublicVals,
-		},&reply,nil)
+
+		go func(v string, i int, handler func(i int)) {
+			d.Connect(v, i)
+			handler(i)
+		}(v,i,handler)
 	}
 }
 
@@ -228,21 +247,23 @@ func (d *Dkg) SendStage2() {
 			continue
 		}
 
-		if d.RPCClients[i]==nil {
-			log.Println("reconnect")
-			var err error
-			d.RPCClients[i], err = rpc.DialHTTP("tcp",v)
-			if err !=nil {
-				log.Println(err.Error())
-			}
+		handler:= func(i int) {
+			var reply int
+			d.RPCClients[i].Go("DkgServer.SendShareStage2",&ShareStage2Payload{
+				Id: d.Id,
+				Share: d.Shares1[i],
+				PublicVals: d.PublicVals1,
+			},&reply,nil)
 		}
 
-		var reply int
-		d.RPCClients[i].Go("DkgServer.SendShareStage2",&ShareStage2Payload{
-			Id: d.Id,
-			Share: d.Shares1[i],
-			PublicVals: d.PublicVals1,
-		},&reply,nil)
+		if d.RPCClients[i]==nil {
+			go func(v string, i int, handler func(i int)) {
+				d.Connect(v, i)
+				handler(i)
+			}(v,i,handler)
+		} else {
+			handler(i)
+		}
 	}
 }
 
@@ -252,17 +273,19 @@ func (d *Dkg) SendCiphertext(ciphertext *Ciphertext) {
 			continue
 		}
 
-		if d.RPCClients[i]==nil {
-			log.Println("reconnect")
-			var err error
-			d.RPCClients[i], err = rpc.DialHTTP("tcp",v)
-			if err !=nil {
-				log.Println(err.Error())
-			}
+		handler:= func(i int) {
+			var reply int
+			d.RPCClients[i].Go("DkgServer.SendCiphertext",ciphertext,&reply,nil)
 		}
 
-		var reply int
-		d.RPCClients[i].Go("DkgServer.SendCiphertext",ciphertext,&reply,nil)
+		if d.RPCClients[i]==nil {
+			go func(v string, i int, handler func(i int)) {
+				d.Connect(v, i)
+				handler(i)
+			}(v,i,handler)
+		} else {
+			handler(i)
+		}
 	}
 }
 
@@ -272,17 +295,19 @@ func (d *Dkg) SendDecrptionShare(decryptionShare *DecryptionShare) {
 			continue
 		}
 
-		if d.RPCClients[i]==nil {
-			log.Println("reconnect")
-			var err error
-			d.RPCClients[i], err = rpc.DialHTTP("tcp",v)
-			if err !=nil {
-				log.Println(err.Error())
-			}
+		handler:= func(i int) {
+			var reply int
+			d.RPCClients[i].Go("DkgServer.SendDecryptionShare",decryptionShare,&reply,nil)
 		}
 
-		var reply int
-		d.RPCClients[i].Go("DkgServer.SendDecryptionShare",decryptionShare,&reply,nil)
+		if d.RPCClients[i]==nil {
+			go func(v string, i int, handler func(i int)) {
+				d.Connect(v, i)
+				handler(i)
+			}(v,i,handler)
+		} else {
+			handler(i)
+		}
 	}
 }
 

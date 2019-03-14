@@ -10,31 +10,12 @@ import (
 	"math/big"
 	"net/http"
 	"net/rpc"
-	"runtime"
-	"sync"
-	"time"
 )
 
 const (
 	dkgConfig = "etc/dkgConfig.json"
 	peerConfig = "etc/peerConfig.json"
 	productPeerConfig = "etc/productPeerConfig.json"
-	encryptionHost = 1
-	encryptionMessage = 20424
-)
-
-
-
-var (
-	startTime time.Time
-	stage1StartTime time.Time
-	stage2StartTime time.Time
-	encrytStartTime time.Time
-	encrytEndTime time.Time
-	decryptStartTime time.Time
-	decryptEndTime time.Time
-	combineShareStartTime time.Time
-	combineShareEndTime time.Time
 )
 
 func loadDkg(config string,id int, servers []string) (*dkg.Dkg) {
@@ -83,91 +64,6 @@ func loadPeers(hostAddress string ,config string) (int,[]string) {
 	return index, pc.Servers
 }
 
-func stateTransition(d *dkg.Dkg,c chan int) {
-	for {
-		select {
-		case state:= <-c:
-			//log.Println("server ",d.Id," :current state:",state)
-			switch state {
-			case dkg.SendShareStage1:
-				stage1StartTime = time.Now()
-				log.Println("connection time:", stage1StartTime.Sub(startTime))
-				go d.SendStage1()
-			case dkg.SendShareStage2:
-				stage2StartTime = time.Now()
-				log.Println("sending stage1 time:",stage2StartTime.Sub(stage1StartTime))
-				go d.SendStage2()
-			case dkg.EncrytionStage:
-				log.Println("sending stage2 time:", time.Since(stage2StartTime))
-				d.SetPublicKey()
-				d.SetPrivateKey()
-				log.Println("!!!!!! total dkg time:",time.Since(startTime))
-				<-time.After(2*time.Second)
-				log.Println("----------------------------------")
-				log.Println("start encryption and decryption ")
-				encrytStartTime = time.Now()
-				if d.Id == encryptionHost {
-					ciphertext:=d.Encrypt(big.NewInt(encryptionMessage))
-					encrytEndTime = time.Now()
-					log.Println("encrytion time",encrytEndTime.Sub(encrytStartTime))
-					d.Ciphertext = ciphertext
-					go d.SendCiphertext(ciphertext)
-					c<- dkg.DecryptionStage
-				}
-			case dkg.DecryptionStage:
-				decryptStartTime = time.Now()
-				log.Println("receiving encrption time:",decryptStartTime.Sub(encrytStartTime))
-				decryptionShare := d.Decrypt(d.Ciphertext)
-				decryptEndTime = time.Now()
-				log.Println("decrption time:",decryptEndTime.Sub(decryptStartTime))
-				d.AppendDecryptionShare(decryptionShare)
-				go d.SendDecrptionShare(decryptionShare)
-			case dkg.CombineShareStage:
-				combineShareStartTime = time.Now()
-				log.Println("receiving share time:",combineShareStartTime.Sub(decryptEndTime))
-				m:=d.CombineShares()
-				combineShareEndTime= time.Now()
-				log.Println("combine share time:",combineShareEndTime.Sub(combineShareStartTime))
-				log.Println("!!!!!! decryption total time:",combineShareEndTime.Sub(encrytStartTime))
-				if m.Cmp(big.NewInt(encryptionMessage))!=0 {
-					panic("can not pass text")
-				}
-			}
-		}
-	}
-}
-
-func connect(d *dkg.Dkg, server string, id int, wg *sync.WaitGroup) {
-	client,err:= rpc.DialHTTP("tcp",server)
-	if err==nil {
-		if client==nil {
-			panic("lost client")
-		}
-		d.RPCClients[id] = client
-	} else {
-		log.Println(server,"not open")
-	}
-	wg.Done()
-}
-
-func waitAndStart(c chan<- int,d *dkg.Dkg, servers []string) {
-	<-time.After(2*time.Second)
-	startTime= time.Now()
-	var wg sync.WaitGroup
-	wg.Add(len(servers)-1)
-
-	for i,v:=range servers {
-		if i+1==d.Id {
-			continue
-		}
-		go connect(d,v,i,&wg)
-	}
-
-	wg.Wait()
-	log.Println("all connected")
-	c <- dkg.SendShareStage1
-}
-
 var (
 	host string
 	port string
@@ -183,7 +79,7 @@ func init() {
 
 func main() {
 	// log
-	runtime.GOMAXPROCS(1)
+	//runtime.GOMAXPROCS(1)
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 
@@ -199,13 +95,10 @@ func main() {
 		index,servers =loadPeers(uri,peerConfig)
 	}
 
-	s := &dkg.DkgServer{
-		D : loadDkg(dkgConfig, index, servers),
-		C : make(chan int,1),
-	}
+	s:= dkg.NewDkgServer(loadDkg(dkgConfig, index, servers))
 
-	go stateTransition(s.D,s.C)
-	go waitAndStart(s.C,s.D,servers)
+	go s.StateTransition()
+	go s.Start()
 
 	err:=rpc.Register(s)
 	if err!=nil {
