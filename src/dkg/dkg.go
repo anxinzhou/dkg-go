@@ -20,6 +20,23 @@ const (
 	CombineShareStage
 )
 
+const (
+	CONNECTION_WAITING_TIME = 4*time.Second
+	AFTER_DKG_WAITING_TIME = 4*time.Second
+)
+
+
+var (
+	stage1StartTime time.Time
+	stage2StartTime time.Time
+	encrytStartTime time.Time
+	encrytEndTime time.Time
+	decryptStartTime time.Time
+	decryptEndTime time.Time
+	combineShareStartTime time.Time
+	combineShareEndTime time.Time
+)
+
 type ShareStage1Payload struct {
 	Id               int
 	Share1             *big.Int
@@ -60,6 +77,12 @@ type PeerPublicVal struct {
 	PublicVal *big.Int `json:"publicVal"`
 }
 
+type Client struct {
+	C *rpc.Client
+	Mutex sync.Mutex
+	ConnectedCount int
+}
+
 type Dkg struct {
 	G                  *big.Int
 	G_                 *big.Int
@@ -88,7 +111,7 @@ type Dkg struct {
 	PublicKey          *big.Int
 	PrivateKey         *big.Int
 
-	RPCClients   []*rpc.Client
+	RPCClients   []*Client
 }
 
 func init() {
@@ -136,7 +159,12 @@ func NewDkg(g *big.Int,g_ *big.Int, h *big.Int, p *big.Int, q *big.Int, t int, n
 		PublicVal:d.PublicVals1[0],
 	}
 
-	d.RPCClients = make([]*rpc.Client,d.N,d.N)
+	d.RPCClients = make([]*Client,d.N,d.N)
+	for i,_:=range d.RPCClients {
+		d.RPCClients[i]=&Client{
+			Mutex: sync.Mutex{},
+		}
+	}
 
 	return d
 }
@@ -200,6 +228,15 @@ func (d *Dkg) IsQualifiedPeerForStage2(payload *ShareStage2Payload) bool {
 }
 
 func (d *Dkg) Connect(server string, id int) {
+	if d.RPCClients[id].C!=nil {
+		return
+	}
+
+	d.RPCClients[id].Mutex.Lock()
+	defer d.RPCClients[id].Mutex.Unlock()
+	if d.RPCClients[id].C != nil {
+		return
+	}
 	for {
 		client,err:= rpc.DialHTTP("tcp",server)
 		if err==nil {
@@ -207,108 +244,72 @@ func (d *Dkg) Connect(server string, id int) {
 				log.Println("lost client")
 				continue
 			}
-			d.RPCClients[id] = client
+			d.RPCClients[id].C = client
+			d.RPCClients[id].ConnectedCount +=1
 			break;
 		} else {
 			log.Println(server,"not open")
 		}
-		log.Println("reconnect")
 	}
-	log.Println("connected")
+	if d.RPCClients[id].ConnectedCount >1 {
+		log.Println("abnormal connection, id",id,"connect count", d.RPCClients[id].ConnectedCount)
+	}
+	//log.Println("connected")
 	//wg.Done()
 }
 
-func (d *Dkg) SendStage1() {
+func (d *Dkg) Broadcast(handler func(i int)) {
 	for i, v := range d.Servers {
 		if i+1 == d.Id {
 			continue
 		}
 
-		handler:= func(i int) {
-			var reply int
-			d.RPCClients[i].Go("DkgServer.SendShareStage1",&ShareStage1Payload{
-				Id:               d.Id,
-				Share1:             d.Shares1[i],
-				Share2:             d.Shares2[i],
-				CombinedPublicVals: d.CombinedPublicVals,
-			},&reply,nil)
-		}
-
-		go func(v string, i int, handler func(i int)) {
-			d.Connect(v, i)
+		if d.RPCClients[i].C!=nil {
 			handler(i)
-		}(v,i,handler)
+		} else {
+			go func(v string, i int, handler func(i int)) {
+				d.Connect(v, i)
+				handler(i)
+			}(v,i,handler)
+		}
 	}
+}
+
+func (d *Dkg) SendStage1() {
+	d.Broadcast(func(i int){
+		var reply int
+		d.RPCClients[i].C.Go("DkgServer.SendShareStage1",&ShareStage1Payload{
+			Id:               d.Id,
+			Share1:             d.Shares1[i],
+			Share2:             d.Shares2[i],
+			CombinedPublicVals: d.CombinedPublicVals,
+		},&reply,nil)
+	})
 }
 
 func (d *Dkg) SendStage2() {
-	for i, v := range d.Servers {
-		if i+1 == d.Id {
-			continue
-		}
-
-		handler:= func(i int) {
-			var reply int
-			d.RPCClients[i].Go("DkgServer.SendShareStage2",&ShareStage2Payload{
-				Id: d.Id,
-				Share: d.Shares1[i],
-				PublicVals: d.PublicVals1,
-			},&reply,nil)
-		}
-
-		if d.RPCClients[i]==nil {
-			go func(v string, i int, handler func(i int)) {
-				d.Connect(v, i)
-				handler(i)
-			}(v,i,handler)
-		} else {
-			handler(i)
-		}
-	}
+	d.Broadcast(func(i int) {
+		var reply int
+		d.RPCClients[i].C.Go("DkgServer.SendShareStage2",&ShareStage2Payload{
+			Id: d.Id,
+			Share: d.Shares1[i],
+			PublicVals: d.PublicVals1,
+		},&reply,nil)
+	})
 }
 
 func (d *Dkg) SendCiphertext(ciphertext *Ciphertext) {
-	for i, v := range d.Servers {
-		if i+1 == d.Id {
-			continue
-		}
-
-		handler:= func(i int) {
-			var reply int
-			d.RPCClients[i].Go("DkgServer.SendCiphertext",ciphertext,&reply,nil)
-		}
-
-		if d.RPCClients[i]==nil {
-			go func(v string, i int, handler func(i int)) {
-				d.Connect(v, i)
-				handler(i)
-			}(v,i,handler)
-		} else {
-			handler(i)
-		}
-	}
+	d.Broadcast(func(i int) {
+		var reply int
+		d.RPCClients[i].C.Go("DkgServer.SendCiphertext",ciphertext,&reply,nil)
+	})
 }
 
 func (d *Dkg) SendDecrptionShare(decryptionShare *DecryptionShare) {
-	for i, v := range d.Servers {
-		if i+1 == d.Id {
-			continue
-		}
-
-		handler:= func(i int) {
-			var reply int
-			d.RPCClients[i].Go("DkgServer.SendDecryptionShare",decryptionShare,&reply,nil)
-		}
-
-		if d.RPCClients[i]==nil {
-			go func(v string, i int, handler func(i int)) {
-				d.Connect(v, i)
-				handler(i)
-			}(v,i,handler)
-		} else {
-			handler(i)
-		}
-	}
+	d.Broadcast(func(i int) {
+		var reply int
+		d.RPCClients[i].C.Go("DkgServer.SendDecryptionShare",decryptionShare,&reply,nil)
+	})
 }
 
 func (d *Dkg) SetPublicKey() {
@@ -437,5 +438,63 @@ func (d *Dkg) IsCiphertextValid(ciphertext *Ciphertext) bool {
 		return true
 	} else {
 		return false
+	}
+}
+
+func Start(s *DkgServer) {
+	<-time.After(CONNECTION_WAITING_TIME)
+	s.C <- SendShareStage1
+}
+
+
+func StateTransition(s *DkgServer) {
+	for {
+		select {
+		case state:= <-s.C:
+			switch state {
+			case SendShareStage1:
+				stage1StartTime = time.Now()
+				go s.D.SendStage1()
+			case SendShareStage2:
+				stage2StartTime = time.Now()
+				log.Println("sending stage1 time:",stage2StartTime.Sub(stage1StartTime))
+				go s.D.SendStage2()
+			case EncrytionStage:
+				log.Println("sending stage2 time:", time.Since(stage2StartTime))
+				s.D.SetPublicKey()
+				s.D.SetPrivateKey()
+				log.Println("!!!!!! total dkg time:",time.Since(stage1StartTime))
+				<-time.After(AFTER_DKG_WAITING_TIME)
+				log.Println("----------------------------------")
+				log.Println("start encryption and decryption ")
+				encrytStartTime = time.Now()
+				if s.D.Id == encryptionHost {
+					ciphertext:=s.D.Encrypt(big.NewInt(encryptionMessage))
+					encrytEndTime = time.Now()
+					log.Println("encrytion time",encrytEndTime.Sub(encrytStartTime))
+					go s.D.SendCiphertext(ciphertext)
+					s.D.Ciphertext = ciphertext
+					s.C<- DecryptionStage
+				}
+			case DecryptionStage:
+				decryptStartTime = time.Now()
+				log.Println("receiving encrption time:",decryptStartTime.Sub(encrytStartTime))
+				decryptionShare := s.D.Decrypt(s.D.Ciphertext)
+				decryptEndTime = time.Now()
+				log.Println("decrption time:",decryptEndTime.Sub(decryptStartTime))
+				go s.D.SendDecrptionShare(decryptionShare)
+				s.D.AppendDecryptionShare(decryptionShare)
+			case CombineShareStage:
+				combineShareStartTime = time.Now()
+				log.Println("receiving share time:",combineShareStartTime.Sub(decryptEndTime))
+				m:= s.D.CombineShares()
+				combineShareEndTime= time.Now()
+				log.Println("combine share time:",combineShareEndTime.Sub(combineShareStartTime))
+				log.Println("!!!!!! decryption total time:",combineShareEndTime.Sub(encrytStartTime))
+				if m.Cmp(big.NewInt(encryptionMessage))!=0 {
+					panic("can not pass text")
+				}
+			}
+		}
 	}
 }

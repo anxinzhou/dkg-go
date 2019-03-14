@@ -10,6 +10,19 @@ import (
 	"math/big"
 	"net/http"
 	"net/rpc"
+	"runtime"
+	"time"
+)
+
+var (
+	stage1StartTime time.Time
+	stage2StartTime time.Time
+	encrytStartTime time.Time
+	encrytEndTime time.Time
+	decryptStartTime time.Time
+	decryptEndTime time.Time
+	combineShareStartTime time.Time
+	combineShareEndTime time.Time
 )
 
 const (
@@ -79,7 +92,7 @@ func init() {
 
 func main() {
 	// log
-	//runtime.GOMAXPROCS(1)
+	runtime.GOMAXPROCS(1)
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 
@@ -97,8 +110,8 @@ func main() {
 
 	s:= dkg.NewDkgServer(loadDkg(dkgConfig, index, servers))
 
-	go s.StateTransition()
-	go s.Start()
+	go dkg.StateTransition(s)
+	go dkg.Start(s)
 
 	err:=rpc.Register(s)
 	if err!=nil {
