@@ -84,7 +84,7 @@ func loadPeers(hostAddress string ,config string,num int) (int,[]string) {
 			break
 		}
 	}
-	return index, pc.Servers
+	return index, pc.Servers[:num]
 }
 
 var (
