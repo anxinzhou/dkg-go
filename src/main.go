@@ -57,7 +57,7 @@ func loadDkg(config string,id int, servers []string) (*dkg.Dkg) {
 	return dkg.NewDkg(dc.G,dc.G_,dc.H,dc.P,dc.Q,t,n,id,servers)
 }
 
-func loadPeers(hostAddress string ,config string,num int) (int,[]string) {
+func loadPeers(hostAddress string ,config string,num int) ([]string) {
 	type peerConfig struct {
 		Servers []string `json:"servers"`
 	}
@@ -77,14 +77,7 @@ func loadPeers(hostAddress string ,config string,num int) (int,[]string) {
 		panic(errors.New("not enough server"))
 	}
 
-	var index int
-	for i,v:=range pc.Servers {
-		if hostAddress ==v {
-			index = i+1
-			break
-		}
-	}
-	return index, pc.Servers[:num]
+	return pc.Servers[:num]
 }
 
 var (
@@ -92,6 +85,7 @@ var (
 	port string
 	isProduct bool
 	num int
+	index int
 )
 
 func init() {
@@ -99,6 +93,7 @@ func init() {
 	flag.StringVar(&port,"port","4001","http port (default 4000)")
 	flag.BoolVar(&isProduct,"p",false,"product mode(default false)")
 	flag.IntVar(&num,"num",4,"number of servers")
+	flag.IntVar(&index,"index",1,"index of this server")
 	flag.Parse()
 }
 
@@ -110,14 +105,14 @@ func main() {
 
 	uri:= host+":"+port
 
-	var index int
+
 	var servers []string
 	if isProduct{
 		log.Println("in product mode")
-		index,servers =loadPeers(uri,productPeerConfig,num)
+		servers =loadPeers(uri,productPeerConfig,num)
 	} else {
 		log.Println("in test mode")
-		index,servers =loadPeers(uri,peerConfig,num)
+		servers =loadPeers(uri,peerConfig,num)
 	}
 
 	s:= dkg.NewDkgServer(loadDkg(dkgConfig, index, servers))
@@ -135,4 +130,6 @@ func main() {
 		log.Fatal(err.Error())
 	}
 }
+
+
 
