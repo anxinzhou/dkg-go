@@ -1,14 +1,27 @@
 #/usr/bin/bash
 
-update="cd dkg-go && git pull && tc qdisc add dev eth0 root netem delay 100ms"
-# declare -i count=0
-cat server.json | while read server 
+update="cd dkg-go && git pull "
+pemPath="${HOME}/.ssh/ax.pem"
+fileName="server.json"
+
+declare -i count=0
+
+# awk -v p=$perPath update=$update '
+# {
+# 	cmd="ssh -o StrictHostKeyChecking=no -i ${pemPath} ${server} \"${update}\""
+# }
+# ' server.json
+
+while read server;
 do 	
-	cmd="ssh -o StrictHostKeyChecking=no -i ${HOME}/.ssh/ax.pem ${server} \"${update}\""
+	let count+=1
+	if (( count < 25 && count > 15 ))
+		then
+			echo $count
+	cmd="ssh -o StrictHostKeyChecking=no -i ${pemPath} ${server} \"${update}\""
 	eval $cmd &
-	# let count++
-	# echo $count
-done 
+		fi
+done < $fileName
 
 wait 
 
