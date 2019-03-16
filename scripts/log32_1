@@ -1,353 +1,546 @@
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:50 main.go:111: in product mode
-2019/03/16 03:54:51 main.go:111: in product mode
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 2562047h47m16.854775807s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.307755221s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.332906126s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.253384351s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.293752821s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.24254353s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.326921177s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.341892854s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.394497482s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.368994973s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.318557738s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.241158495s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.265202023s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.22765414s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.167120863s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.234579758s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.194123594s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.262332132s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.283000348s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.139424395s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.185185612s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.132930741s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.265720127s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.135808403s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.060637047s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.165034705s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.17449493s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.230632195s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.203488485s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.236533408s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.294904118s
-2019/03/16 03:54:55 dkg.go:460: sending stage1 time: 1.211480101s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 132.607457ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.440829594s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 148.477482ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.517919049s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 167.99691ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.434163729s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 193.746328ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.487967766s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 197.556696ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.440533635s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 220.176673ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.473976701s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 215.475643ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.450495999s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 218.062231ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.446181339s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 234.764061ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.629736452s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 232.98113ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.498628247s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 237.357119ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.564686563s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 235.830902ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.375728966s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 245.02192ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.58736298s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 257.854389ms
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 247.290596ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.432915153s
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.591194303s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 261.073593ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.502634686s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 262.972717ms
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 261.208673ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.58196819s
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.5239582s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 781.559106ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 520.057109ms
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 272.487881ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.555916721s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 266.292537ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.561649857s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 275.09448ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.411316934s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 275.830352ms
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 279.229339ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.479757488s
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.412642327s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 284.768246ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.479325426s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 294.920237ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.46252644s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 291.509188ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.528496872s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 294.935337ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.356049332s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 294.806779ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.469767071s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 298.11612ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.529192937s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 300.986505ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.51289419s
-2019/03/16 03:54:55 dkg.go:463: sending stage2 time: 309.356575ms
-2019/03/16 03:54:55 dkg.go:466: !!!!!! total dkg time: 1.474856657s
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:474: encrytion time 2.673576ms
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 2.716097ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 2.319755ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 9.482ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.318441ms
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 59.880392ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.69µs
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 55.121176ms
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 77.28477ms
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 31.359543ms
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 33.497526ms
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 101.911802ms
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 34.032908ms
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 9.767159ms
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 9.64675ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 2.145895ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 3.3µs
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 9.591686ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 2.858879ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.060651ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.078502ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.204512ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.239484ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.421987ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.959µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 2.993184ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.483836ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 4.634374ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 5.194176ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.163134ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 4.67666ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.651µs
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.704µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.314927ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.734µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.238336ms
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.937287ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 2.042µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.235681ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.86µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.109036ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.828µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 2.91525ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.549µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.129598ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 2.147µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.272298ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.746µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.138943ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.707µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.075917ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 1.753µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.02733ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 3.767µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.260341ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 2.074µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.002873ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 2.319µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 2.912238ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 2.08µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 3.063532ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 2.001µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 2.944216ms
-2019/03/16 03:54:59 dkg.go:468: ----------------------------------
-2019/03/16 03:54:59 dkg.go:469: start encryption and decryption 
-2019/03/16 03:54:59 dkg.go:481: receiving encrption time: 2.05µs
-2019/03/16 03:54:59 dkg.go:484: decrption time: 2.904522ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 391.928022ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 409.762791ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 402.779432ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 408.187987ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 344.257548ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 373.057775ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 363.581196ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 396.079579ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 398.503688ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 408.39975ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 385.676116ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 408.03629ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 380.833803ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 410.226638ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 408.645844ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 410.877773ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 412.330898ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 378.973095ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 362.226308ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 358.127682ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 408.704341ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 413.725847ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 412.215846ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 393.132349ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 413.435844ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 388.906587ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 415.340675ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 350.70278ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 364.240324ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 383.126779ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 367.524451ms
-2019/03/16 03:55:00 dkg.go:489: receiving share time: 545.920407ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 22.82547ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 417.993562ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.795713ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 432.253764ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.057463ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 447.620695ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 21.465369ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 423.285688ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 22.853045ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 406.817995ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.82491ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 437.075238ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.729121ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 436.252547ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.991124ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 401.126523ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.947474ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 424.965991ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.825415ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 492.980715ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.887826ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 472.760754ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.036471ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 472.182622ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 26.81046ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 373.97458ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.87987ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 448.764286ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.08392ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 446.543081ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 23.218465ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 499.683583ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 27.402736ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 394.013015ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.983252ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 517.677422ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.251416ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 23.0168ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 390.262071ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 407.3652ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 27.247659ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 416.034671ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.83255ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 386.025844ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.341117ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 450.196897ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.54663ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 421.916702ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.085287ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 416.908952ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.835703ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 544.234075ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.024884ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 378.673881ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 27.677613ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 393.168029ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 27.403006ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 475.402905ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 25.795176ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 412.1964ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.729493ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 395.168501ms
-2019/03/16 03:55:00 dkg.go:492: combine share time: 24.833702ms
-2019/03/16 03:55:00 dkg.go:493: !!!!!! decryption total time: 575.789961ms
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+Sat Mar 16 09:34:48 UTC 2019
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.487166616s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.507756497s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.507546117s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.473471478s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.450027931s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.485190557s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.494455905s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.497206951s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.477412093s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.479735946s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.455219599s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.449079266s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.450302814s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.443658096s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.428114661s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.402728483s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.43966383s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.409647669s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.432299119s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.387329223s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.406491127s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.400148834s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.387997476s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.355946019s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.359182317s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.349827606s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.361464789s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.315564971s
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 main.go:96: in product mode
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.330902625s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.32334325s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.284073365s
+2019/03/16 09:34:53 dkg.go:453: wait time: 2.321635916s
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 528.124171ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 552.50717ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 571.527452ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 622.2218ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 600.184363ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 615.91668ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 626.65667ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 643.425129ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 628.880988ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 627.438419ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 641.358819ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 655.844442ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 708.528815ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 656.259876ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 706.562041ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 661.789641ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 694.853138ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 682.838348ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 666.376217ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 674.67599ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 714.469843ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 713.051151ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 692.50356ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 697.748824ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 700.548414ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 707.21166ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 723.065484ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 707.66526ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 699.224655ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 721.409914ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 709.012464ms
+2019/03/16 09:34:56 dkg.go:469: receive stage1 time: 756.422124ms
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 289.15899ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 817.784285ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.181827615s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 273.179609ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 826.150214ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.173419551s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 256.00049ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 827.921833ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.171720134s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 231.320113ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 831.874487ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.167703954s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 243.050375ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 865.726716ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.133873591s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 219.880797ms
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 221.129658ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 846.993519ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.152617486s
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 837.596773ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.162015645s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 220.882131ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 864.779789ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.134880354s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 212.329164ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 840.224026ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.159355282s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 211.652635ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 853.489998ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.146106834s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 214.735983ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 844.046162ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.155611593s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 213.105803ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 869.394841ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.130171797s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 204.725716ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 913.74215ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.085857556s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 201.456209ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 863.736518ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.135803441s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 208.16647ms
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 203.928643ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 865.073244ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.134548831s
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 910.959903ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.088612847s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 205.253804ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 900.607378ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.099060431s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 201.781804ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 885.146969ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.114490931s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 205.583818ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 872.458315ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.127157734s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 200.42461ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 915.32549ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.084233495s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 206.467404ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 881.565924ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.117989351s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 199.595627ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 913.070894ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.086538605s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 195.602862ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 888.545038ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.11105501s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 180.03889ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 903.548732ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.096092865s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 199.113473ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 897.290979ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.102296215s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 200.486568ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 901.482054ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.098161314s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 208.678828ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 908.331557ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.091323758s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 209.345002ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 917.488804ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.082097248s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 219.942529ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 927.65334ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.072014031s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 214.295713ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 923.79802ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.075746925s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 224.428856ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 946.502628ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.053122969s
+2019/03/16 09:34:56 dkg.go:472: receive stage2 time: 232.238504ms
+2019/03/16 09:34:56 dkg.go:475: !!!!!! total dkg time: 989.133335ms
+2019/03/16 09:34:56 dkg.go:453: wait time: 3.010421624s
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:483: encrytion time 2.324696ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 2.409005ms
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:493: decrption time: 2.599473ms
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:477: ----------------------------------
+2019/03/16 09:35:00 dkg.go:478: start encryption and decryption 
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 125.782364ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 130.259316ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 170.973314ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 135.220701ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 165.024006ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 129.3946ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 121.367605ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 146.30526ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 129.980043ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 132.383131ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 126.938037ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.20574ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.167413ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.089894ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.339023ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.197945ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.087026ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.152426ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.133991ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.115749ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.125735ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.345965ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 134.808669ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 164.566966ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 156.070382ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 143.496153ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 118.052025ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 186.057095ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 125.329438ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 144.868424ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 160.992442ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 124.235059ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 162.431605ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 129.472594ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 125.577522ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 169.059937ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 116.816265ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 127.814444ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 140.737675ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 2.377502ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 126.505388ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 2.787706ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 2.877808ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 134.89244ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 2.973304ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.102224ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.1545ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.168884ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.098936ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 2.946637ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 2.98158ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.233567ms
+2019/03/16 09:35:00 dkg.go:490: receiving encrption time: 142.221664ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.13634ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.103744ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.084097ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.159886ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.213195ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.082668ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 2.929641ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.134558ms
+2019/03/16 09:35:00 dkg.go:493: decrption time: 3.132674ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 408.958383ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 409.092141ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 409.275602ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 409.76968ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 411.56951ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 411.816954ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 411.706749ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 412.180573ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 411.377329ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 412.279782ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 413.565626ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 408.49783ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 409.041814ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 408.870686ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 408.550474ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 407.941194ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 409.611108ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 409.567237ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 410.429387ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 411.09656ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 408.049661ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 411.157481ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 412.015463ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 412.4296ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 410.024769ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 413.949254ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 414.060222ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 413.616306ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 415.305905ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 414.320249ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 544.878254ms
+2019/03/16 09:35:00 dkg.go:498: receiving share time: 417.038283ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.022964ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 558.435978ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.006128ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 568.374147ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 24.895816ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 604.579226ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 24.806842ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 575.01191ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.425348ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 569.613281ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 24.820668ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 566.481999ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.509818ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 572.294286ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.26018ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 613.138188ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.465475ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 568.634152ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.018502ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 569.84531ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.392529ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 588.397406ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.854763ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 563.434019ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 26.83162ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 564.010716ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 24.32785ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 602.779082ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.508995ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 568.833855ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.498003ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 600.701143ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.183414ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 556.241257ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.107629ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 584.135393ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.463951ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 609.081633ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.877442ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 603.012624ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.592883ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 627.239464ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.455889ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 573.327631ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 24.649731ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 597.547175ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.466907ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 579.837724ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 24.902855ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 567.265819ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.38259ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 560.604578ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.353085ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 577.845161ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.619823ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 566.570124ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.324553ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 587.746793ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 27.26388ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 582.644871ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 24.835732ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 574.722464ms
+2019/03/16 09:35:00 dkg.go:501: combine share time: 25.238546ms
+2019/03/16 09:35:00 dkg.go:502: !!!!!! decryption total time: 573.304468ms
+main: line 9:  8120 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  8666 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  9956 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  8666 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7671 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7668 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  8753 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  8500 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7777 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  8037 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7353 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  8281 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  8172 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7290 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7659 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7330 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7203 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7807 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7693 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7257 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  6787 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7768 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  6755 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7220 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7243 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  6893 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  6838 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  6859 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  7581 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  6828 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  6816 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+main: line 9:  6875 Killed                  /snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
+[1] 09:35:07 [SUCCESS] ubuntu@ec2-52-90-76-206.compute-1.amazonaws.com
+[2] 09:35:07 [SUCCESS] ubuntu@ec2-3-82-228-165.compute-1.amazonaws.com
+[3] 09:35:07 [SUCCESS] ubuntu@ec2-3-86-109-18.compute-1.amazonaws.com
+[4] 09:35:07 [SUCCESS] ubuntu@ec2-54-211-71-7.compute-1.amazonaws.com
+[5] 09:35:07 [SUCCESS] ubuntu@ec2-34-238-53-226.compute-1.amazonaws.com
+[6] 09:35:07 [SUCCESS] ubuntu@ec2-3-94-62-18.compute-1.amazonaws.com
+[7] 09:35:07 [SUCCESS] ubuntu@ec2-3-82-102-158.compute-1.amazonaws.com
+[8] 09:35:07 [SUCCESS] ubuntu@ec2-3-87-9-51.compute-1.amazonaws.com
+[9] 09:35:07 [SUCCESS] ubuntu@ec2-18-204-205-44.compute-1.amazonaws.com
+[10] 09:35:07 [SUCCESS] ubuntu@ec2-34-201-110-6.compute-1.amazonaws.com
+[11] 09:35:07 [SUCCESS] ubuntu@ec2-3-84-117-227.compute-1.amazonaws.com
+[12] 09:35:07 [SUCCESS] ubuntu@ec2-54-172-132-146.compute-1.amazonaws.com
+[13] 09:35:07 [SUCCESS] ubuntu@ec2-3-86-200-135.compute-1.amazonaws.com
+[14] 09:35:07 [SUCCESS] ubuntu@ec2-3-85-166-97.compute-1.amazonaws.com
+[15] 09:35:07 [SUCCESS] ubuntu@ec2-3-94-78-140.compute-1.amazonaws.com
+[16] 09:35:07 [SUCCESS] ubuntu@ec2-54-90-65-70.compute-1.amazonaws.com
+[17] 09:35:07 [SUCCESS] ubuntu@ec2-3-89-98-235.compute-1.amazonaws.com
+[18] 09:35:07 [SUCCESS] ubuntu@ec2-18-212-186-208.compute-1.amazonaws.com
+[19] 09:35:07 [SUCCESS] ubuntu@ec2-54-88-135-91.compute-1.amazonaws.com
+[20] 09:35:07 [SUCCESS] ubuntu@ec2-3-83-9-97.compute-1.amazonaws.com
+[21] 09:35:07 [SUCCESS] ubuntu@ec2-34-227-17-90.compute-1.amazonaws.com
+[22] 09:35:07 [SUCCESS] ubuntu@ec2-3-93-237-11.compute-1.amazonaws.com
+[23] 09:35:07 [SUCCESS] ubuntu@ec2-54-172-114-83.compute-1.amazonaws.com
+[24] 09:35:07 [SUCCESS] ubuntu@ec2-52-91-28-245.compute-1.amazonaws.com
+[25] 09:35:07 [SUCCESS] ubuntu@ec2-3-80-133-62.compute-1.amazonaws.com
+[26] 09:35:07 [SUCCESS] ubuntu@ec2-3-86-219-69.compute-1.amazonaws.com
+[27] 09:35:07 [SUCCESS] ubuntu@ec2-3-83-30-207.compute-1.amazonaws.com
+[28] 09:35:07 [SUCCESS] ubuntu@ec2-34-203-216-36.compute-1.amazonaws.com
+[29] 09:35:07 [SUCCESS] ubuntu@ec2-3-83-52-50.compute-1.amazonaws.com
+[30] 09:35:07 [SUCCESS] ubuntu@ec2-54-152-107-125.compute-1.amazonaws.com
+[31] 09:35:07 [SUCCESS] ubuntu@ec2-3-83-93-139.compute-1.amazonaws.com
+[32] 09:35:07 [SUCCESS] ubuntu@ec2-3-85-239-19.compute-1.amazonaws.com
+./run.sh: line 38: 28613 Killed                  eval $cmd
+./run.sh: line 38: 28614 Killed                  eval $cmd
+./run.sh: line 38: 28615 Killed                  eval $cmd
+./run.sh: line 38: 28616 Killed                  eval $cmd
+./run.sh: line 38: 28617 Killed                  eval $cmd
+./run.sh: line 38: 28618 Killed                  eval $cmd
+./run.sh: line 38: 28619 Killed                  eval $cmd
+./run.sh: line 38: 28620 Killed                  eval $cmd
+./run.sh: line 38: 28621 Killed                  eval $cmd
+./run.sh: line 38: 28629 Killed                  eval $cmd
+./run.sh: line 38: 28630 Killed                  eval $cmd
+./run.sh: line 38: 28631 Killed                  eval $cmd
+./run.sh: line 38: 28637 Killed                  eval $cmd
+./run.sh: line 38: 28638 Killed                  eval $cmd
+./run.sh: line 38: 28639 Killed                  eval $cmd
+./run.sh: line 38: 28640 Killed                  eval $cmd
+./run.sh: line 38: 28641 Killed                  eval $cmd
+./run.sh: line 38: 28642 Killed                  eval $cmd
+./run.sh: line 38: 28643 Killed                  eval $cmd
+./run.sh: line 38: 28651 Killed                  eval $cmd
+./run.sh: line 38: 28652 Killed                  eval $cmd
+./run.sh: line 38: 28653 Killed                  eval $cmd
+./run.sh: line 38: 28654 Killed                  eval $cmd
+./run.sh: line 38: 28655 Killed                  eval $cmd
+./run.sh: line 38: 28656 Killed                  eval $cmd
+./run.sh: line 38: 28657 Killed                  eval $cmd
+./run.sh: line 38: 28665 Killed                  eval $cmd
+./run.sh: line 38: 28666 Killed                  eval $cmd
+./run.sh: line 38: 28667 Killed                  eval $cmd
+./run.sh: line 38: 28668 Killed                  eval $cmd
+./run.sh: line 38: 28669 Killed                  eval $cmd
+./run.sh: line 38: 28670 Killed                  eval $cmd

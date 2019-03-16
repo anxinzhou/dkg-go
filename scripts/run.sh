@@ -6,7 +6,7 @@ killAll(){
 pkill -P $$
 }
 
-num=32
+num=$1
 
 runShell="excecute.sh"
 startTime=$(date)
@@ -25,7 +25,14 @@ do
 	fi
 done < server.json
 
+#for pid in ${pids[*]}; do
+#	wait $pid
+#done
+
+sleep 15
+
 for pid in ${pids[*]}; do
-	wait $pid
+	kill -9 $pid
 done
 
+./kill.sh
