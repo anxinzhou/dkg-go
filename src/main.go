@@ -11,18 +11,6 @@ import (
 	"math/big"
 	"net/http"
 	"net/rpc"
-	"time"
-)
-
-var (
-	stage1StartTime time.Time
-	stage2StartTime time.Time
-	encrytStartTime time.Time
-	encrytEndTime time.Time
-	decryptStartTime time.Time
-	decryptEndTime time.Time
-	combineShareStartTime time.Time
-	combineShareEndTime time.Time
 )
 
 const (
@@ -130,6 +118,9 @@ func start() {
 
 func main() {
 	start()
+	//t,_:=time.Parse(time.UnixDate,"Sat Mar 16 09:09:24 UTC 2019")
+	//log.Println(t)
+	//log.Println(time.Now().UTC())
 }
 
 

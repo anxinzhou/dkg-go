@@ -22,8 +22,8 @@ const (
 )
 
 const (
-	START_CONNECTION_WAITING_TIME = 10*time.Second
-	START_ENCRYPT_WAITING_TIME = 14*time.Second
+	START_CONNECTION_WAITING_TIME = 20*time.Second
+	START_ENCRYPT_WAITING_TIME = 25*time.Second
 )
 
 
