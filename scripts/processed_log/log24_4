@@ -1,0 +1,73 @@
+Combining Shares  18.256757ms
+Combining Shares  18.26508ms
+Combining Shares  18.517655ms
+Combining Shares  18.517945ms
+Combining Shares  18.528131ms
+Combining Shares  18.547007ms
+Combining Shares  18.573759ms
+Combining Shares  18.599806ms
+Combining Shares  18.627484ms
+Combining Shares  18.722692ms
+Combining Shares  18.797517ms
+Combining Shares  18.806309ms
+Combining Shares  18.873281ms
+Combining Shares  18.875465ms
+Combining Shares  18.912708ms
+Combining Shares  18.918916ms
+Combining Shares  18.999128ms
+Combining Shares  19.01731ms
+Combining Shares  19.084372ms
+Combining Shares  19.112417ms
+Combining Shares  19.135789ms
+Combining Shares  19.143786ms
+Combining Shares  19.269681ms
+Combining Shares  19.270811ms
+DKG setup  670.827711ms
+DKG setup  680.324533ms
+DKG setup  683.544605ms
+DKG setup  687.104977ms
+DKG setup  688.359292ms
+DKG setup  692.598579ms
+DKG setup  701.593613ms
+DKG setup  702.332064ms
+DKG setup  703.269433ms
+DKG setup  709.276869ms
+DKG setup  709.953638ms
+DKG setup  714.608588ms
+DKG setup  721.10365ms
+DKG setup  721.771814ms
+DKG setup  728.125006ms
+DKG setup  728.259426ms
+DKG setup  732.06261ms
+DKG setup  744.292235ms
+DKG setup  744.618098ms
+DKG setup  749.454434ms
+DKG setup  766.108552ms
+DKG setup  768.900072ms
+DKG setup  773.918969ms
+DKG setup  787.62742ms
+Decryption  2.318215ms
+Decryption  2.502346ms
+Decryption  2.513492ms
+Decryption  2.674865ms
+Decryption  2.727114ms
+Decryption  2.784201ms
+Decryption  2.86787ms
+Decryption  2.901076ms
+Decryption  2.950705ms
+Decryption  2.961636ms
+Decryption  3.046039ms
+Decryption  3.074939ms
+Decryption  3.108776ms
+Decryption  3.110941ms
+Decryption  3.112941ms
+Decryption  3.130295ms
+Decryption  3.143216ms
+Decryption  3.147571ms
+Decryption  3.155342ms
+Decryption  3.170969ms
+Decryption  3.244496ms
+Decryption  3.27308ms
+Decryption  3.288651ms
+Decryption  3.799674ms
+Encryption  2.548961ms

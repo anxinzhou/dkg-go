@@ -1,0 +1,25 @@
+Combining Shares  4.278065ms
+Combining Shares  6.265976ms
+Combining Shares  8.173996ms
+Combining Shares  8.185432ms
+Combining Shares  8.205943ms
+Combining Shares  8.213393ms
+Combining Shares  8.233372ms
+Combining Shares  8.333566ms
+DKG setup  613.348702ms
+DKG setup  614.817534ms
+DKG setup  616.803028ms
+DKG setup  616.827434ms
+DKG setup  617.132444ms
+DKG setup  619.030308ms
+DKG setup  639.005949ms
+DKG setup  640.141312ms
+Decryption  12.036031ms
+Decryption  2.250922ms
+Decryption  2.296794ms
+Decryption  2.344202ms
+Decryption  2.423571ms
+Decryption  2.440997ms
+Decryption  2.442756ms
+Decryption  2.490296ms
+Encryption  3.413218ms

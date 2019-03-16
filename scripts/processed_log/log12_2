@@ -1,0 +1,37 @@
+Combining Shares  10.1974ms
+Combining Shares  10.268541ms
+Combining Shares  10.26914ms
+Combining Shares  10.330889ms
+Combining Shares  10.471991ms
+Combining Shares  10.481609ms
+Combining Shares  8.26108ms
+Combining Shares  8.311688ms
+Combining Shares  8.313548ms
+Combining Shares  8.340399ms
+Combining Shares  8.368332ms
+Combining Shares  8.370882ms
+DKG setup  620.554523ms
+DKG setup  623.071256ms
+DKG setup  628.387019ms
+DKG setup  628.758191ms
+DKG setup  628.821589ms
+DKG setup  631.008129ms
+DKG setup  631.324215ms
+DKG setup  633.536065ms
+DKG setup  661.824348ms
+DKG setup  672.981833ms
+DKG setup  682.470296ms
+DKG setup  696.766997ms
+Decryption  1.818495ms
+Decryption  2.085579ms
+Decryption  2.184912ms
+Decryption  2.320013ms
+Decryption  2.372194ms
+Decryption  2.435965ms
+Decryption  2.446928ms
+Decryption  2.48641ms
+Decryption  2.503851ms
+Decryption  2.548617ms
+Decryption  2.667643ms
+Decryption  2.678346ms
+Encryption  2.453953ms
