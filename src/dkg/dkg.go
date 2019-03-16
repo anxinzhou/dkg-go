@@ -448,8 +448,9 @@ func timeSince(startTime string, waitTime time.Duration) time.Duration {
 		panic(err)
 	}
 	t.Add(waitTime)
-	t2:=time.Now()
+	t2:=time.Now().UTC()
 	diff:=t.Sub(t2)
+	log.Println("wait time:",diff)
 	return diff
 }
 

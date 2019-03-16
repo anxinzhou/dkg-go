@@ -11,7 +11,6 @@ import (
 	"math/big"
 	"net/http"
 	"net/rpc"
-	"runtime"
 	"time"
 )
 
@@ -99,8 +98,7 @@ func init() {
 	flag.Parse()
 }
 
-func main() {
-	runtime.GOMAXPROCS(1)
+func start() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 	uri:= host+":"+port
@@ -127,6 +125,11 @@ func main() {
 	if err!=nil {
 		log.Fatal(err.Error())
 	}
+}
+
+
+func main() {
+	start()
 }
 
 
