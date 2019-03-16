@@ -13,7 +13,6 @@ type DkgServer struct {
 const (
 	CLIENT_SEND_BUFFER = 96
 	STAGE_BUFFER = 10
-	encryptionHost = 1
 	encryptionMessage = 20424
 )
 

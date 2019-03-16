@@ -12,7 +12,7 @@ run(){
 	cd src/
 	export GOPATH=$(dirname $(pwd))
 	export CGO_ENABLED=0
-	/snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index}
+	/snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime=$(date)
 }
 
 run

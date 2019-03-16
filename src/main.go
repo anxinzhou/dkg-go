@@ -86,6 +86,7 @@ var (
 	isProduct bool
 	num int
 	index int
+	startTime string
 )
 
 func init() {
@@ -94,17 +95,15 @@ func init() {
 	flag.BoolVar(&isProduct,"p",false,"product mode(default false)")
 	flag.IntVar(&num,"num",4,"number of servers")
 	flag.IntVar(&index,"index",1,"index of this server")
+	flag.StringVar(&startTime,"startTime","","startTime of program")
 	flag.Parse()
 }
 
 func main() {
-	// log
 	runtime.GOMAXPROCS(1)
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-
 	uri:= host+":"+port
-
 
 	var servers []string
 	if isProduct{
@@ -117,8 +116,7 @@ func main() {
 
 	s:= dkg.NewDkgServer(loadDkg(dkgConfig, index, servers))
 
-	go dkg.StateTransition(s)
-	go dkg.Start(s)
+	go dkg.StateTransition(s,startTime)
 
 	err:=rpc.Register(s)
 	if err!=nil {

@@ -18,11 +18,12 @@ const (
 	EncrytionStage
 	DecryptionStage
 	CombineShareStage
+	encryptionHost = 1
 )
 
 const (
-	CONNECTION_WAITING_TIME = 4*time.Second
-	AFTER_DKG_WAITING_TIME = 4*time.Second
+	START_CONNECTION_WAITING_TIME = 4*time.Second
+	START_ENCRYPT_WAITING_TIME = 8*time.Second
 )
 
 
@@ -441,30 +442,37 @@ func (d *Dkg) IsCiphertextValid(ciphertext *Ciphertext) bool {
 	}
 }
 
-func Start(s *DkgServer) {
-	<-time.After(CONNECTION_WAITING_TIME)
-	s.C <- SendShareStage1
+func timeSince(startTime string, waitTime time.Duration) time.Duration {
+	t,err:=time.Parse(time.UnixDate,startTime)
+	if err!=nil {
+		panic(err)
+	}
+	t.Add(waitTime)
+	t2:=time.Now()
+	diff:=t.Sub(t2)
+	return diff
 }
 
 
-func StateTransition(s *DkgServer) {
+func StateTransition(s *DkgServer,startTime string) {
+	<-time.After(timeSince(startTime,START_CONNECTION_WAITING_TIME))
+	// send stage 1
+	stage1StartTime = time.Now()
+	go s.D.SendStage1()
 	for {
 		select {
 		case state:= <-s.C:
 			switch state {
-			case SendShareStage1:
-				stage1StartTime = time.Now()
-				go s.D.SendStage1()
 			case SendShareStage2:
 				stage2StartTime = time.Now()
-				log.Println("sending stage1 time:",stage2StartTime.Sub(stage1StartTime))
+				log.Println("receive stage1 time:",stage2StartTime.Sub(stage1StartTime))
 				go s.D.SendStage2()
 			case EncrytionStage:
-				log.Println("sending stage2 time:", time.Since(stage2StartTime))
+				log.Println("receive stage2 time:", time.Since(stage2StartTime))
 				s.D.SetPublicKey()
 				s.D.SetPrivateKey()
 				log.Println("!!!!!! total dkg time:",time.Since(stage1StartTime))
-				<-time.After(AFTER_DKG_WAITING_TIME)
+				<-time.After(timeSince(startTime,START_ENCRYPT_WAITING_TIME))
 				log.Println("----------------------------------")
 				log.Println("start encryption and decryption ")
 				encrytStartTime = time.Now()
