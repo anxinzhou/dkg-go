@@ -22,8 +22,8 @@ const (
 )
 
 const (
-	START_CONNECTION_WAITING_TIME = 20*time.Second
-	START_ENCRYPT_WAITING_TIME = 25*time.Second
+	START_CONNECTION_WAITING_TIME = 8*time.Second
+	START_ENCRYPT_WAITING_TIME = 12*time.Second
 )
 
 
@@ -447,7 +447,7 @@ func timeSince(startTime string, waitTime time.Duration) time.Duration {
 	if err!=nil {
 		panic(err)
 	}
-	t.Add(waitTime)
+	t=t.Add(waitTime)
 	t2:=time.Now().UTC()
 	diff:=t.Sub(t2)
 	log.Println("wait time:",diff)
