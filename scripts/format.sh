@@ -2,21 +2,25 @@
 
 serverFile="server.json"
 fileName="productPeerConfig.json"
-dst="/Users/anxin/Desktop/ghub-project/dkg-go/src/etc/"
+dst="${HOME}/dkg-go/src/etc/"
 
 echo '{' > $fileName
 echo '"servers":[ ' >> $fileName
 
-
-line=$(cat $serverFile | wc -l )
+line=$(cat raw.json | wc -l )
 awk -v l="$line" '
 {	
+	q="\""
+	cmd="host "$2 " | awk '\''{ print $NF}'\''"
+	cmd | getline s
 	if ( NR != l ) {
-		print ($2":4000,")
+		c= q""s":4000"q","
+		print c
 	} else {
-		print ($2":4000")
+		c= q""s":4000"q
+		print c
 	}
-}' $serverFile >> $fileName 
+}' raw.json  >> $fileName 
 
 echo '] '>>$fileName
 echo '} ' >>$fileName 
@@ -27,6 +31,5 @@ mv $fileName $dst$fileName
 
 awk '{ 
 	print ("ubuntu@"$2);
-}' server.json  > log
-rm server.json
-mv log server.json
+}' raw.json  > server.json
+

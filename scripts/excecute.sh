@@ -11,8 +11,8 @@ run(){
 	cd src/
 	export GOPATH=$(dirname $(pwd))
 	export CGO_ENABLED=0
-	echo "index"$index
-	/snap/bin/go run main.go -host=$host -port=$port -p=1 -num=4 -index=$index
+	echo "dsaindex"$index
+	/snap/bin/go run main.go -host=$host -port=$port -p=1 -num=4 -index=${index}
 }
 
 run

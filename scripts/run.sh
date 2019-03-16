@@ -15,7 +15,10 @@ do
 	let count++
 	cmd="ssh -o StrictHostKeyChecking=no ${server} \"bash -s ${count} \" <  ${runShell}"
 	eval $cmd &
+	pids[${count}]=$!
 done
 
-sleep 10
-wait
+for pid in ${pids[*]}; do
+	echo $pid
+	wait $pid
+done
