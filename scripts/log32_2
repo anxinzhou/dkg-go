@@ -1,0 +1,128 @@
+2019/03/16 03:56:45 main.go:111: in product mode
+2019/03/16 03:56:45 main.go:111: in product mode
+2019/03/16 03:56:45 main.go:111: in product mode
+2019/03/16 03:56:45 main.go:111: in product mode
+2019/03/16 03:56:45 main.go:111: in product mode
+2019/03/16 03:56:45 main.go:111: in product mode
+2019/03/16 03:56:45 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:45 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:46 main.go:111: in product mode
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 756.935963ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 768.331596ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 523.844606ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 662.962146ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 689.734572ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 595.7701ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 607.254043ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 561.913232ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 584.925645ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 641.555777ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 746.136179ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 583.814738ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 790.782872ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 755.117506ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 679.705146ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 704.345601ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 601.311809ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 785.097231ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 735.421543ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 772.362417ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 683.695065ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 671.367023ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 728.098832ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 656.874121ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 607.752356ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 577.713882ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 606.919294ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 696.223311ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 579.985474ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 666.025646ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 675.427274ms
+2019/03/16 03:56:50 dkg.go:460: sending stage1 time: 749.244235ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 143.545432ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 912.285568ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 140.969255ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 845.758063ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 182.605649ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 939.951829ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 197.014855ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 860.408928ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 180.618664ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 971.867275ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 198.730028ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 954.512542ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 229.216862ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 919.391843ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 230.112281ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 826.422149ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 216.42795ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 952.26252ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 225.10096ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 232.511339ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 1.010712287s
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 979.169231ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 226.720256ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 828.72871ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 231.573737ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 903.419662ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 248.979703ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 243.13365ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 834.338678ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 237.347384ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 1.015985009s
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 913.285787ms
+2019/03/16 03:56:50 dkg.go:463: sending stage2 time: 247.290506ms
+2019/03/16 03:56:50 dkg.go:466: !!!!!! total dkg time: 975.895644ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 259.039448ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 901.101898ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 255.233012ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 912.591774ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 261.85432ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 942.00528ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 258.46936ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 1.008170506s
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 276.307867ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 884.076108ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 265.526127ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 949.669398ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 269.48559ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 935.981088ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 301.265021ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 825.54232ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 292.702769ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 855.222104ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 281.05844ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 977.743172ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 283.229349ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 891.60766ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 287.529881ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 894.869836ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 295.252733ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 875.668367ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 305.57815ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 889.925378ms
+2019/03/16 03:56:51 dkg.go:463: sending stage2 time: 300.018627ms
+2019/03/16 03:56:51 dkg.go:466: !!!!!! total dkg time: 878.258154ms

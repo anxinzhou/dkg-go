@@ -6,19 +6,24 @@ killAll(){
 pkill -P $$
 }
 
+num=32
 
 runShell="excecute.sh"
 
 declare -i count=0
-cat server.json | while read server 
+while read server 
 do 	
 	let count++
-	cmd="ssh -o StrictHostKeyChecking=no ${server} \"bash -s ${count} \" <  ${runShell}"
+	cmd="ssh -o StrictHostKeyChecking=no ${server} \"bash -s ${count} ${num} \" <  ${runShell}"
 	eval $cmd &
 	pids[${count}]=$!
-done
+	if (( count==num ))
+	then 
+		break;
+	fi
+done < server.json
 
 for pid in ${pids[*]}; do
-	echo $pid
 	wait $pid
 done
+
