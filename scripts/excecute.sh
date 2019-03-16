@@ -3,6 +3,8 @@
 
 index=$1
 num=$2
+startTime="$3"
+echo $startTime
 
 run(){
 	host=$(/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:")
@@ -12,7 +14,7 @@ run(){
 	cd src/
 	export GOPATH=$(dirname $(pwd))
 	export CGO_ENABLED=0
-	/snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime=$(date)
+	/snap/bin/go run main.go -host=$host -port=$port -p=1 -num=${num} -index=${index} -startTime="${startTime}"
 }
 
 run

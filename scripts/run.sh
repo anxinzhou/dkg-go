@@ -9,12 +9,14 @@ pkill -P $$
 num=32
 
 runShell="excecute.sh"
+startTime=$(date)
+echo $startTime
 
 declare -i count=0
 while read server 
 do 	
 	let count++
-	cmd="ssh -o StrictHostKeyChecking=no ${server} \"bash -s ${count} ${num} \" <  ${runShell}"
+	cmd="ssh -o StrictHostKeyChecking=no ${server} \"bash -s ${count} ${num} '${startTime}' \" <  ${runShell}"
 	eval $cmd &
 	pids[${count}]=$!
 	if (( count==num ))
