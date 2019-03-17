@@ -10,6 +10,9 @@ dirName="processed_log"
 # logs=[ "log/log"+str(num)+"_"+str(order) for num in nums for order in orders]
 # print(logs)
 
+def avg(l):
+	return sum(l)/len(l)
+
 statics=defaultdict(lambda :defaultdict(dict))
 for num in nums:
 	dic=defaultdict(list)
@@ -58,11 +61,15 @@ bar_width = 0.5
 i=-(len(statics.keys())-2)/2
 keys=["Encryption","Broadcast encryption","Decryption","Broadcast shares","Combining Shares","DKG setup"]
 
-print(statics["Broadcast encryption"])
+print("Encryption:",avg(statics["Encryption"].values()))
+print("Decryption:",avg(statics["Decryption"].values()))
+print("Broadcast encryption:",avg(statics["Broadcast encryption"].values()))
+print("Broadcast shares:",list(statics["Broadcast shares"].values())[-1])
+print("Combining Shares:",list(statics["Combining Shares"].values())[-1])
+print("DKG setup:",list(statics["DKG setup"].values())[-1])
 for l in keys:
 	# if l!="Decryption":
 	# 	continue
-	print(l)
 	d=statics[l]
 	x=sorted(d.keys())
 	y=[d[k] for k in x]
@@ -78,7 +85,7 @@ ax.set_yscale("log")
 ax.get_yaxis().set_major_formatter(ScalarFormatter())
 ax.set_xticks(nums)
 ax.set_ylabel('Time (sec)')
-ax.set_xlabel('Size of SM')
+ax.set_xlabel('Size of secret-managing committee')
 ax.legend(loc="upper right",bbox_to_anchor=(1.0, 0.35),prop={"size":6.6})
 plt.show()
 
