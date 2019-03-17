@@ -1,3 +1,11 @@
+Broadcast encryption  117.866294ms
+Broadcast encryption  121.008004ms
+Broadcast encryption  131.140564ms
+Broadcast encryption  2.691936ms
+Broadcast shares  110.711276ms
+Broadcast shares  111.343345ms
+Broadcast shares  129.223994ms
+Broadcast shares  243.068994ms
 Combining Shares  2.153021ms
 Combining Shares  2.173285ms
 Combining Shares  2.214792ms

@@ -22,7 +22,7 @@ for num in nums:
 			name=' '.join(c[:-1])
 			value=float(c[-1])
 			dic[name].append(value)
-			# if num==28 and name=="DKG setup":
+			# if name=="Broadcast encryption":
 			# 	print(value)
 		f.close()
 			
@@ -30,6 +30,8 @@ for num in nums:
 		v=dic[k]
 		total=0
 		count=0
+		maxV=max(v)
+		minV=min(v)
 		for value in v:
 			if k=="Decryption" and (value>=8 or value<=1):
 				continue
@@ -37,6 +39,14 @@ for num in nums:
 				continue
 			elif k=="DKG setup" and (value<=50):
 				continue
+			elif k=="Broadcast encryption" and (value<=10):
+				continue
+			elif k=="Broadcast shares" and value>(maxV-minV)/2+minV:
+				# print (maxV,minV)
+				continue
+			if k=="Broadcast encryption":
+				print(value)
+				pass
 			total+=value
 			count+=1
 		total=total/count/1000
@@ -44,10 +54,11 @@ for num in nums:
 
 # begin draw
 fig,ax = plt.subplots()
-bar_width = 1.0
+bar_width = 0.5
 i=-(len(statics.keys())-2)/2
-keys=["Encryption","Decryption","Combining Shares","DKG setup"]
+keys=["Encryption","Broadcast encryption","Decryption","Broadcast shares","Combining Shares","DKG setup"]
 
+print(statics["Broadcast encryption"])
 for l in keys:
 	# if l!="Decryption":
 	# 	continue
@@ -68,7 +79,7 @@ ax.get_yaxis().set_major_formatter(ScalarFormatter())
 ax.set_xticks(nums)
 ax.set_ylabel('Time (sec)')
 ax.set_xlabel('Size of SM')
-ax.legend(loc="upper right",bbox_to_anchor=(1.0, 0.85))
+ax.legend(loc="upper right",bbox_to_anchor=(1.0, 0.35),prop={"size":6.6})
 plt.show()
 
 

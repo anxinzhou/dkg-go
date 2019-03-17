@@ -13,9 +13,9 @@ do
 		dst="${dstDir}/${file}"
 		awk '/time/ { $1="";$2=""; $3=""; print $0}' $src  | grep -v "dkg.go" |  sed -e 's/[!:]//g'  -e 's/^ *//g' -e '/wait/d' -e 's/time//g' \
 		-e '/stage./d' \
-		-e '/receiving encrption/d' \
+		-e 's/receiving encrption/Broadcast encryption/g' \
 		-e 's/combine share/Combining Shares/g' -e 's/decrption/Decryption/g' \
 		-e 's/encrytion/Encryption/g' -e 's/total dkg/DKG setup/g' \
-		-e '/receiving share/d' -e '/decryption total/d' | sort > $dst
+		-e 's/receiving share/Broadcast shares/g' -e '/decryption total/d' | sort > $dst
 	done
 done
