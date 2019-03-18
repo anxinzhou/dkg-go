@@ -53,20 +53,23 @@ for num in nums:
 			total+=value
 			count+=1
 		total=total/count/1000
+		# if k=="DKG setup":
+		# 	statics[k][num]=maxV 
+		# else:
 		statics[k][num]=total
 
 # begin draw
 fig,ax = plt.subplots()
 bar_width = 0.5
 i=-(len(statics.keys())-2)/2
-keys=["Encryption","Broadcast encryption","Decryption","Broadcast shares","Combining Shares","DKG setup"]
+keys=["Encryption","Decryption","Combining Shares","DKG setup"]
 
 print("Encryption:",avg(statics["Encryption"].values()))
 print("Decryption:",avg(statics["Decryption"].values()))
 print("Broadcast encryption:",avg(statics["Broadcast encryption"].values()))
 print("Broadcast shares:",list(statics["Broadcast shares"].values())[-1])
 print("Combining Shares:",list(statics["Combining Shares"].values())[-1])
-print("DKG setup:",list(statics["DKG setup"].values())[-1])
+print("DKG setup:",list(statics["DKG setup"].values()))
 for l in keys:
 	# if l!="Decryption":
 	# 	continue
