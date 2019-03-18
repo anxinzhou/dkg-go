@@ -4,6 +4,7 @@ import os
 from matplotlib.ticker import ScalarFormatter
 
 nums=range(4,36,4)
+recordsNum=nums
 orders=range(1,5)
 dirName="processed_log"
 
@@ -28,7 +29,8 @@ for num in nums:
 			# if name=="Broadcast encryption":
 			# 	print(value)
 		f.close()
-			
+	if num not in recordsNum:
+		continue
 	for k in dic:
 		v=dic[k]
 		total=0
@@ -60,9 +62,10 @@ for num in nums:
 
 # begin draw
 fig,ax = plt.subplots()
-bar_width = 0.5
-i=-(len(statics.keys())-2)/2
+bar_width = 1.2
 keys=["Encryption","Decryption","Combining Shares","DKG setup"]
+colors=["#00FF00","#0000CD","#8B4513","k"]
+i=-(len(keys)-2)/2
 
 print("Encryption:",avg(statics["Encryption"].values()))
 print("Decryption:",avg(statics["Decryption"].values()))
@@ -70,7 +73,7 @@ print("Broadcast encryption:",avg(statics["Broadcast encryption"].values()))
 print("Broadcast shares:",list(statics["Broadcast shares"].values())[-1])
 print("Combining Shares:",list(statics["Combining Shares"].values())[-1])
 print("DKG setup:",list(statics["DKG setup"].values()))
-for l in keys:
+for l,c in zip(keys,colors):
 	# if l!="Decryption":
 	# 	continue
 	d=statics[l]
@@ -80,16 +83,20 @@ for l in keys:
 	if l=="DKG setup":
 		print(statics[l])
 		pass
-		ax.plot(nums,y,marker='o',label=l)
+		ax.plot(recordsNum,y,marker='o',label=l,color=c)
 	else:
-		ax.bar([n+i*bar_width for n in nums],y,width=bar_width,align='center',alpha=0.5,label=l)
+		if l=="Combining Shares":
+			b=ax.bar([n+i*bar_width for n in recordsNum],y,width=bar_width,align='center',label=l,color=c,hatch='//')
+		else:
+			b=ax.bar([n+i*bar_width for n in recordsNum],y,width=bar_width,align='center',label=l,color=c)		
 		i+=1
 ax.set_yscale("log")
 ax.get_yaxis().set_major_formatter(ScalarFormatter())
-ax.set_xticks(nums)
-ax.set_ylabel('Time (sec)')
-ax.set_xlabel('Size of secret-managing committee')
-ax.legend(loc="upper right",bbox_to_anchor=(1.0, 0.35),prop={"size":6.6})
+ax.set_xticks(recordsNum)
+ax.set_ylabel('Time (sec)',fontsize="14")
+ax.set_xlabel('Size of secret-managing committee',fontsize="14")
+ax.tick_params(labelsize="11")
+ax.legend(loc="upper right",bbox_to_anchor=(1.0, 0.87),prop={"size":15})
 plt.show()
 
 
