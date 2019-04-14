@@ -64,7 +64,7 @@ for num in nums:
 fig,ax = plt.subplots()
 bar_width = 1.2
 keys=["Encryption","Decryption","Combining Shares","DKG setup"]
-colors=["#00FF00","#0000CD","#8B4513","k"]
+colors=["orange","brown","navy","k"]
 i=-(len(keys)-2)/2
 
 print("Encryption:",avg(statics["Encryption"].values()))

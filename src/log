@@ -1,0 +1,110 @@
+2019/03/18 20:28:31 main.go:99: in test mode
+2019/03/18 20:28:31 main.go:99: in test mode
+panic: parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 18 [running]:
+panic: dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0xc420041df8)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448 +0x23b
+dkg.StateTransition(0xc4201460f0, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 18 [running]:
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0xc420041df8)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448105 + +0x218
+0x23b
+dkg.StateTransition(0xc42013c0f0, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:105 +0x218
+exit status 2
+exit status 2
+2019/03/18 20:28:31 main.go:99: in test mode
+panic: parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 18 [running]:
+dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448 +0x23b
+dkg.StateTransition(0xc4201500f0, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:105 +0x218
+exit status 2
+2019/03/18 20:28:31 main.go:99: in test mode
+panic: parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 34 [running]:
+dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448 +0x23b
+dkg.StateTransition(0xc420162110, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:105 +0x218
+exit status 2
+2019/03/18 20:28:32 main.go:99: in test mode
+panic: parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 18 [running]:
+dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0xc420041df8)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448 +0x23b
+dkg.StateTransition(0xc420150100, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:105 +0x218
+exit status 2
+2019/03/18 20:28:32 main.go:99: in test mode
+panic: parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 18 [running]:
+dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0xc420041df8)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448 +0x23b
+dkg.StateTransition(0xc42013c0f0, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:105 +0x218
+2019/03/18 20:28:32 main.go:99: in test mode
+exit status 2
+panic: parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 34 [running]:
+dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0xc42003cdf8)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448 +0x23b
+dkg.StateTransition(0xc4201540e0, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:105 +0x218
+exit status 2
+2019/03/18 20:28:32 main.go:99: in test mode
+2019/03/18 20:28:32 main.go:99: in test mode
+panic: parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 34 [running]:
+dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0xc42003cdf8)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448 +0x23b
+dkg.StateTransition(0xc420164100, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:105 +0x218
+panic: parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 20 [running]:
+dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0xc42003cdf8)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448 +0x23b
+dkg.StateTransition(0xc4200a3b60, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:105 +0x218
+exit status 2
+exit status 2
+2019/03/18 20:28:32 main.go:99: in test mode
+panic: parsing time "" as "Mon Jan _2 15:04:05 MST 2006": cannot parse "" as "Mon"
+
+goroutine 34 [running]:
+dkg.timeSince(0x0, 0x0, 0x1dcd65000, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:448 +0x23b
+dkg.StateTransition(0xc4201540e0, 0x0, 0x0)
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/dkg/dkg.go:459 +0x5f
+created by main.start
+	/Users/anxin/Desktop/ghub-project/dkg-go/src/main.go:105 +0x218
+exit status 2
