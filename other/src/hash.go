@@ -10,7 +10,7 @@ import (
 )
 
 const hashSize = 32
-const checkPoint = 1000
+const checkPoint = 100000
 
 // 2^224 -1
 
@@ -44,13 +44,13 @@ func cal(difficulty *big.Int, duration time.Duration, nonces chan int64) {
 			break
 		}
 	}
-	log.Println("public key",pubKey)
+	//log.Println("public key", pubKey)
 	// other part
 	prefix := new(big.Int).Xor(big.NewInt(r|timeStamp), pubKey)
 
 	// calculate nonce
 	startTime := time.Now()
-	targetTime := startTime.Add(duration)
+	//targetTime := startTime.Add(duration)
 	var nonce int64 = 0
 	for {
 		nb := big.NewInt(nonce)
@@ -60,31 +60,34 @@ func cal(difficulty *big.Int, duration time.Duration, nonces chan int64) {
 		if v.Cmp(difficulty) < 0 {
 			break;
 		}
-		if (nonce+1)%checkPoint == 0 {
-			if time.Now().After(targetTime) {
-				log.Println("time out", "current nonce", nonce)
-				nonce = -1
-				break;
-			}
-		}
+		//if (nonce+1)%checkPoint == 0 {
+		//	//if time.Now().After(targetTime) {
+		//	//	log.Println("time out", "current nonce", nonce)
+		//	//	nonce = -1
+		//	//	break;
+		//	//}
+		//	log.Println(nonce)
+		//}
 		nonce = nonce + 1
 	}
 	endTime := time.Now()
-	log.Println("total time:", endTime.Sub(startTime))
+	log.Println("finish time:", endTime.Sub(startTime),"nonces",nonce)
 	nonces <- nonce
 }
 
 var t int
 var clientNum int
+var lambda int
 
 func init() {
-	flag.IntVar(&t, "duration", 1, "time of computing")
-	flag.IntVar(&clientNum, "num", 4, "number of committee")
+	flag.IntVar(&t, "duration", 60, "time of computing")
+	flag.IntVar(&clientNum, "num", 1, "number of committee")
+	flag.IntVar(&lambda,"lambda",229,"")
 }
 
 func main() {
-	log.Println("timeStamp,",timeStamp)
-	lambda := 224
+	log.Println("timeStamp,", timeStamp)
+	lambda := 229
 	difficulty := getDifficultyFromLambda(lambda)
 	duration := time.Duration(t) * time.Second
 	nonces := make(chan int64, clientNum)
@@ -93,15 +96,17 @@ func main() {
 	}
 
 	successCount := 0
-	for nonce := range nonces {
-		log.Println(successCount)
-		if nonce != -1 {
-			successCount+=1
-			log.Println("find, nonce:,", nonce)
-		} else {
-			log.Println("do not find")
+	outer:
+	for {
+		select {
+		case <-nonces:
+			successCount += 1
+		case <-time.After(duration):
+			log.Println("time out")
+			break outer
 		}
 	}
-	log.Println("total",clientNum)
-	log.Println("pass count",successCount)
+	if successCount>=1 {
+		log.Println("pass, count:",successCount)
+	}
 }
