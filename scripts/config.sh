@@ -1,13 +1,2 @@
-ins="sudo sed  '$ a PermitUserEnvironment yes' /etc/ssh/sshd_config && sudo /etc/init.d/ssh restart"
-
-
-declare -i count=0
-cat server.json | while read server 
-do 	
-	cmd="ssh -i ${HOME}/.ssh/ax.pem ${server} \"${ins}\" "
-	eval $cmd &
-	let count++
-	echo $count
-done
-
-wait 
+#!/usr/bin/env bash
+pssh -i -x "-o StrictHostKeyChecking=no" -h server.json "git clone https://github.com/xxRanger/dkg-go.git"
