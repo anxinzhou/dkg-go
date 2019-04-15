@@ -80,11 +80,11 @@ var lambda int
 func init() {
 	flag.IntVar(&t, "duration", 60, "time of computing")
 	flag.IntVar(&clientNum, "num", 1, "number of committee")
-	flag.IntVar(&lambda,"lambda",229,"")
+	flag.IntVar(&lambda,"lambda",229,"difficulty of mining")
+	flag.Parse()
 }
 
 func main() {
-	log.Println("timeStamp,", timeStamp)
 	lambda := 229
 	difficulty := getDifficultyFromLambda(lambda)
 	duration := time.Duration(t) * time.Second
