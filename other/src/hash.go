@@ -85,7 +85,6 @@ func init() {
 }
 
 func main() {
-	lambda := 229
 	difficulty := getDifficultyFromLambda(lambda)
 	duration := time.Duration(t) * time.Second
 	nonce,cost:=cal(difficulty,duration)
