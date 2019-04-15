@@ -1,0 +1,20 @@
+deploy
+trasaction cost 414879
+execution cost 274971
+
+registerCommittee
+trasaction cost 64305
+execution cost 40857
+
+submitKnowledge
+trasaction cost 104640
+execution cost 81192
+
+buyKnowledge
+trasaction cost 47386
+execution cost 33538
+
+submitDecryptionShare
+trasaction cost 65742
+execution cost 47094
+

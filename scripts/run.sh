@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #/usr/bin/bash
 
 trap 'killAll' SIGINT
